@@ -90,7 +90,7 @@ class Log {
   // 🔳 Boxed Log Formatter (Auto Wrap at 150 Characters)
   static String _formatBox(String message, String color) {
     const int padding = 2; // Left padding only
-    const int maxWidth = 150; // Maximum width before wrapping
+    const int maxWidth = 80; // Maximum width before wrapping
     List<String> lines = _wrapText(message, maxWidth); // Wrap long lines
 
     int maxLength = lines.map(getVisibleLength).reduce((a, b) => a > b ? a : b); // Find longest line
@@ -110,22 +110,24 @@ class Log {
   }
 
   // Helper function to wrap text at a specific width
+// Helper function to wrap text at a specific width and break after specific characters
   static List<String> _wrapText(String text, int maxWidth) {
-    final words = text.split(' ');
+    final specialChars = {'.', ',', '{', '}', ':', '[', ']'}; // Break after these
     List<String> lines = [];
     String currentLine = '';
 
-    for (var word in words) {
-      if ((currentLine.length + word.length + 1) > maxWidth) {
-        lines.add(currentLine);
-        currentLine = word;
-      } else {
-        currentLine = currentLine.isEmpty ? word : '$currentLine $word';
+    for (int i = 0; i < text.length; i++) {
+      String char = text[i];
+      currentLine += char;
+
+      if (specialChars.contains(char) || (currentLine.length >= maxWidth)) {
+        lines.add(currentLine.trim());
+        currentLine = '';
       }
     }
 
     if (currentLine.isNotEmpty) {
-      lines.add(currentLine);
+      lines.add(currentLine.trim());
     }
 
     return lines;
