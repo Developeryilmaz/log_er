@@ -2,8 +2,6 @@
 
 library log_er;
 
-export 'log_er.dart';
-
 import 'dart:developer' as developer;
 import 'package:flutter/foundation.dart';
 
@@ -112,7 +110,7 @@ class Log {
 
   // Helper function to wrap text based on conditions
   static List<String> _wrapText(String text) {
-    final specialChars = {'.', '{', '}', '[', ']'}; // Normal line-breaking characters
+    final specialChars = {'.', '{', '}', '[', ']'}; // Normal line-breaking characters (':' removed)
     bool insideBraces = false; // Tracks whether inside {}
     List<String> lines = [];
     String currentLine = '';
@@ -142,7 +140,7 @@ class Log {
         currentLine = '';
       }
 
-      // Always break after these characters
+      // Always break after these characters except `:`
       if (specialChars.contains(char) && char != '.' && char != ',') {
         lines.add(currentLine.trim());
         currentLine = '';
