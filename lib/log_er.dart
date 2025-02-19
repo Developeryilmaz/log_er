@@ -1,11 +1,12 @@
-
-// lib/log_er/log_er.dart
-
 library log_er;
 
+export 'log_er.dart';
+
+// lib/log_er/log_er.dart
 import 'dart:developer' as developer;
 import 'package:flutter/foundation.dart';
 import 'package:characters/characters.dart';
+
 
 class Log {
   Log._();
@@ -135,3 +136,4 @@ class Log {
     return lines;
   }
 }
+
