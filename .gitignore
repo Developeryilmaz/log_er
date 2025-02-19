@@ -7,9 +7,4 @@
 pubspec.lock
 notes.txt
 # .gitignore içeriği
-build/
-.dart_tool/
-.pub/
-.idea/
-packages/
-*.iml
+
