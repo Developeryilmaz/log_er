@@ -22,20 +22,20 @@ Then, import and use it in your Flutter project:
 import 'package:log_er/log_er.dart';
 
 void main() {
-  LogEr.info("Application Started");
-  LogEr.warning("This is a warning message");
-  LogEr.error("Something went wrong!", stackTrace: StackTrace.current);
+  Log.info("Application Started");
+  Log.warning("This is a warning message");
+  Log.error("Something went wrong!", stackTrace: StackTrace.current);
 }
 ```
 
 ## 📌 Log Levels & Usage
 ```dart
-LogEr.error("🔥 Critical Error");
-LogEr.debug("🍺 Debugging Mode Enabled");
-LogEr.warning("🚨 Warning: Low Battery");
-LogEr.info("🔵 App Running Smoothly");
-LogEr.special("💜 Special Log Event");
-LogEr.data("✅ User Data Loaded Successfully");
+Log.error("🔥 Critical Error");
+Log.debug("🍺 Debugging Mode Enabled");
+Log.warning("🚨 Warning: Low Battery");
+Log.info("🔵 App Running Smoothly");
+Log.special("💜 Special Log Event");
+Log.data("✅ User Data Loaded Successfully");
 ```
 
 ## 🎯 Why Use log_er?
