@@ -2,6 +2,8 @@
 
 library log_er;
 
+export 'log_er.dart';
+
 import 'dart:developer' as developer;
 import 'package:flutter/foundation.dart';
 
@@ -87,11 +89,10 @@ class Log {
     );
   }
 
-  // 🔳 Boxed Log Formatter (Auto Wrap at 150 Characters)
+  // 🔳 Boxed Log Formatter
   static String _formatBox(String message, String color) {
     const int padding = 2; // Left padding only
-    const int maxWidth = 80; // Maximum width before wrapping
-    List<String> lines = _wrapText(message, maxWidth); // Wrap long lines
+    List<String> lines = _wrapText(message); // Wrap text based on special rules
 
     int maxLength = lines.map(getVisibleLength).reduce((a, b) => a > b ? a : b); // Find longest line
     int contentWidth = maxLength + (padding * 2); // Inner width calculation
@@ -109,10 +110,10 @@ class Log {
     return '\n$color$border\n$middleLines\n$bottomBorder$_reset';
   }
 
-  // Helper function to wrap text at a specific width
-// Helper function to wrap text at a specific width and break after specific characters
-  static List<String> _wrapText(String text, int maxWidth) {
-    final specialChars = {'.', ',', '{', '}', ':', '[', ']'}; // Break after these
+  // Helper function to wrap text based on conditions
+  static List<String> _wrapText(String text) {
+    final specialChars = {'.', '{', '}', ':', '[', ']'}; // Normal line-breaking characters
+    bool insideBraces = false; // Tracks whether inside {}
     List<String> lines = [];
     String currentLine = '';
 
@@ -120,7 +121,29 @@ class Log {
       String char = text[i];
       currentLine += char;
 
-      if (specialChars.contains(char) || (currentLine.length >= maxWidth)) {
+      if (char == '{') {
+        insideBraces = true;
+      } else if (char == '}') {
+        insideBraces = false;
+        lines.add(currentLine.trim());
+        currentLine = '';
+        continue;
+      }
+
+      // If NOT inside {}, break on `.`
+      if (!insideBraces && char == '.') {
+        lines.add(currentLine.trim());
+        currentLine = '';
+      }
+
+      // If inside {}, break on `,`
+      if (insideBraces && char == ',') {
+        lines.add(currentLine.trim());
+        currentLine = '';
+      }
+
+      // Always break after these characters
+      if (specialChars.contains(char) && char != '.' && char != ',') {
         lines.add(currentLine.trim());
         currentLine = '';
       }
