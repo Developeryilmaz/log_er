@@ -6,12 +6,8 @@ export 'log_er.dart';
 import 'dart:developer' as developer;
 import 'package:flutter/foundation.dart';
 import 'package:characters/characters.dart';
-
-
 import 'dart:convert';
-import 'dart:developer' as developer;
-import 'package:flutter/foundation.dart';
-import 'package:characters/characters.dart';
+
 
 class Log {
   Log._();
