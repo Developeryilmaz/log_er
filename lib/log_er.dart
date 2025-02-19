@@ -112,7 +112,7 @@ class Log {
 
   // Helper function to wrap text based on conditions
   static List<String> _wrapText(String text) {
-    final specialChars = {'.', '{', '}', ':', '[', ']'}; // Normal line-breaking characters
+    final specialChars = {'.', '{', '}', '[', ']'}; // Normal line-breaking characters
     bool insideBraces = false; // Tracks whether inside {}
     List<String> lines = [];
     String currentLine = '';
