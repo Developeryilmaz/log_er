@@ -8,6 +8,11 @@ import 'package:flutter/foundation.dart';
 import 'package:characters/characters.dart';
 
 
+import 'dart:convert';
+import 'dart:developer' as developer;
+import 'package:flutter/foundation.dart';
+import 'package:characters/characters.dart';
+
 class Log {
   Log._();
 
@@ -50,6 +55,7 @@ class Log {
 
     int maxLength = lines.map(getVisibleLength).reduce((a, b) => a > b ? a : b); // Find longest line
     int contentWidth = maxLength + (padding * 2); // Inner width calculation
+
     // Create top border
     String border = '┌${'─' * contentWidth}';
 
@@ -135,5 +141,21 @@ class Log {
 
     return lines;
   }
-}
 
+  // ✅ JSON Formatlama (Her ',' ve '.' Sonrasında Yeni Satır)
+  static String formatJsonString(String jsonString) {
+    try {
+      // JSON'u decode et ve formatlı hale getir
+      var jsonObject = jsonDecode(jsonString);
+      String prettyJson = JsonEncoder.withIndent("  ").convert(jsonObject);
+
+      // Her virgülden (,) ve noktadan (.) sonra alt satıra geç
+      return prettyJson.replaceAllMapped(
+        RegExp(r'([,.])'), // Nokta veya virgül bulunursa
+        (match) => '${match.group(1)}\n', // Yanına \n ekleyerek alt satıra geç
+      );
+    } catch (e) {
+      return 'Invalid JSON format: $e';
+    }
+  }
+}
