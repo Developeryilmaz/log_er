@@ -1,4 +1,6 @@
-import 'package:log_er/log_er/log_er.dart';
+
+// import 'package:log_er/log_er.dart';
+import 'package:log_er/log_er.dart';
 
 void main() {
   Log.error("🔥 Critical Error");
