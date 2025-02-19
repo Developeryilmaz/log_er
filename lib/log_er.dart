@@ -110,7 +110,7 @@ class Log {
 
   // Helper function to wrap text based on conditions
   static List<String> _wrapText(String text) {
-    final specialChars = {'.', '{', '}', '[', ']'}; // Normal line-breaking characters (':' removed)
+    final specialChars = {'.', '{', '}', '[', ']', ','}; // Normal line-breaking characters
     bool insideBraces = false; // Tracks whether inside {}
     List<String> lines = [];
     String currentLine = '';
@@ -128,20 +128,15 @@ class Log {
         continue;
       }
 
-      // If NOT inside {}, break on `.`
-      if (!insideBraces && char == '.') {
+      // Eğer nokta (.) kullanılmış ve ondan sonra boşluk (space) YOKSA, alt satıra in
+      if (char == '.' && (i + 1 < text.length && text[i + 1] != ' ')) {
         lines.add(currentLine.trim());
         currentLine = '';
+        continue;
       }
 
-      // If inside {}, break on `,`
-      if (insideBraces && char == ',') {
-        lines.add(currentLine.trim());
-        currentLine = '';
-      }
-
-      // Always break after these characters except `:`
-      if (specialChars.contains(char) && char != '.' && char != ',') {
+      // Eğer iç içe {} içinde değilsek ve özel karakterlerden biri geldiyse, yeni satır başlat
+      if (!insideBraces && specialChars.contains(char)) {
         lines.add(currentLine.trim());
         currentLine = '';
       }
