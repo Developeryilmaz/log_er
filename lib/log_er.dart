@@ -2,156 +2,108 @@ library log_er;
 
 export 'log_er.dart';
 
-// lib/log_er/log_er.dart
+import 'dart:convert';
 import 'dart:developer' as developer;
 import 'package:flutter/foundation.dart';
 import 'package:characters/characters.dart';
-import 'dart:convert';
-
 
 class Log {
   Log._();
 
   // ANSI escape codes for colors
-  static const String _reset = '\x1B[0m'; // Reset color
-  static const String _red = '\x1B[31m'; // Red (Error)
-  static const String _green = '\x1B[32m'; // Green (Debug)
-  static const String _yellow = '\x1B[33m'; // Yellow (Warning)
-  static const String _blue = '\x1B[34m'; // Blue (Info)
-  static const String _magenta = '\x1B[35m'; // Purple (Special)
-  static const String _cyan = '\x1B[36m'; // Cyan (Data)
+  static const String _reset = '\x1B[0m';
+  static const String _red = '\x1B[31m';
+  static const String _green = '\x1B[32m';
+  static const String _yellow = '\x1B[33m';
+  static const String _blue = '\x1B[34m';
+  static const String _magenta = '\x1B[35m';
+  static const String _cyan = '\x1B[36m';
+  static const String _bold = '\x1B[1m';
 
-  // General log method
-  static void log(String message, {String color = _reset, StackTrace? stackTrace}) {
-    final formattedMessage = '$color[LOG] $message$_reset';
+  // ✅ General Log Method with Star Border
+  static void log(String emoji, String tag, String message, {String color = _reset, StackTrace? stackTrace}) {
+    String formattedMessage = _formatBox("$emoji $_bold[$tag]$_reset $message", color);
+    debugPrint(formattedMessage);
 
-    debugPrint(formattedMessage); // Print colored output
-
-    // Log to developer console without color codes
     developer.log(
       message.replaceAll(RegExp(r'\x1B\[[0-9;]*m'), ''),
-      name: 'LOG',
+      name: tag.toUpperCase(),
       stackTrace: stackTrace,
     );
   }
 
-  // Color-coded log methods
-  static void red(String message, {StackTrace? stackTrace}) => log(message, color: _red, stackTrace: stackTrace);
-  static void green(String message, {StackTrace? stackTrace}) => log(message, color: _green, stackTrace: stackTrace);
-  static void yellow(String message, {StackTrace? stackTrace}) => log(message, color: _yellow, stackTrace: stackTrace);
-  static void blue(String message, {StackTrace? stackTrace}) => log(message, color: _blue, stackTrace: stackTrace);
-  static void magenta(String message, {StackTrace? stackTrace}) => log(message, color: _magenta, stackTrace: stackTrace);
-  static void cyan(String message, {StackTrace? stackTrace}) => log(message, color: _cyan, stackTrace: stackTrace);
+  // ✅ Specific Log Types with Color and Border
+  static void debug(String message, {StackTrace? stackTrace}) =>
+      log('✅', 'DEBUG', message, color: _green, stackTrace: stackTrace);
 
-  // 🔳 Boxed Log Formatter (Auto Wrap at 150 Characters)
-  static String _formatBox(String message, String color) {
-    const int padding = 2; // Left padding only
-    const int maxWidth = 150; // Maximum width before wrapping
-    List<String> lines = _wrapText(message, maxWidth); // Wrap long lines
+  static void info(String message, {StackTrace? stackTrace}) =>
+      log('🔵', 'INFO', message, color: _blue, stackTrace: stackTrace);
 
-    int maxLength = lines.map(getVisibleLength).reduce((a, b) => a > b ? a : b); // Find longest line
-    int contentWidth = maxLength + (padding * 2); // Inner width calculation
+  static void warn(String message, {StackTrace? stackTrace}) =>
+      log('🚨', 'WARNING', message, color: _yellow, stackTrace: stackTrace);
 
-    // Create top border
-    String border = '┌${'─' * contentWidth}';
+  static void error(String message, {StackTrace? stackTrace}) =>
+      log('🔥', 'ERROR', message, color: _red, stackTrace: stackTrace);
 
-    // Create content lines (No right border)
-    List<String> formattedLines = lines.map((line) {
-      return '│${' ' * padding}$line';
-    }).toList();
+  static void fatal(String message, {StackTrace? stackTrace}) =>
+      log('💀', 'FATAL', message, color: _red, stackTrace: stackTrace);
 
-    // Create bottom border
-    String bottom = '└${'─' * contentWidth}';
+  static void special(String message, {StackTrace? stackTrace}) =>
+      log('💜', 'SPECIAL', message, color: _magenta, stackTrace: stackTrace);
 
-    return '$color\n$border\n${formattedLines.join("\n")}\n$bottom$_reset';
+  static void data(String message, {StackTrace? stackTrace}) =>
+      log('🍺', 'DATA', message, color: _cyan, stackTrace: stackTrace);
+
+  // ✅ JSON Log Formatting with Box
+  static void json(String message, {String color = '\x1B[36m'}) {
+    String formatted = formatTextWithNewline(message);
+    print(_formatBox("🚀 [JSON] $formatted", color));
   }
 
-  // 🔥 ERROR Logs
-  static void error(String message, {StackTrace? stackTrace}) => _log(
-        _formatBox('🔥 ERROR | $message', _red),
-        stackTrace: stackTrace,
-      );
-
-  // ✅ DEBUG Logs
-  static void debug(String message, {StackTrace? stackTrace}) => _log(
-        _formatBox('🍺 DEBUG | $message', _green),
-        stackTrace: stackTrace,
-      );
-
-  // ⚠️ WARNING Logs
-  static void warning(String message, {StackTrace? stackTrace}) => _log(
-        _formatBox('🚨 WARNING | $message', _yellow),
-        stackTrace: stackTrace,
-      );
-
-  // ℹ️ INFO Logs
-  static void info(String message, {StackTrace? stackTrace}) => _log(
-        _formatBox('🔵 INFO | $message', _blue),
-        stackTrace: stackTrace,
-      );
-
-  // 💜 SPECIAL Logs
-  static void special(String message, {StackTrace? stackTrace}) => _log(
-        _formatBox('💜 SPECIAL | $message', _magenta),
-        stackTrace: stackTrace,
-      );
-
-  // ✅ DATA Logs
-  static void data(String message, {StackTrace? stackTrace}) => _log(
-        _formatBox('✅ DATA | $message', _cyan),
-        stackTrace: stackTrace,
-      );
-
-  // 🌟 General Log Handler
-  static void _log(String message, {StackTrace? stackTrace}) {
-    debugPrint(message); // Print to terminal
-
-    // Log in VS Code Debug Console
-    developer.log(
-      message.replaceAll(RegExp(r'\x1B\[[0-9;]*m'), ''), // Remove colors before logging
-      name: 'LOG',
-      stackTrace: stackTrace,
-    );
-  }
-
-  // 🛠 Optimized Method: Calculate Character Length (Handles Emojis)
-  static int getVisibleLength(String text) {
-    return text.characters.length;
-  }
-
-  // 📝 Helper Method: Wrap Text at 150 Characters
-  static List<String> _wrapText(String text, int maxWidth) {
-    List<String> words = text.split(' ');
-    List<String> lines = [];
-    String currentLine = '';
-
-    for (String word in words) {
-      if (getVisibleLength(currentLine + word) <= maxWidth) {
-        currentLine += (currentLine.isEmpty ? '' : ' ') + word;
-      } else {
-        lines.add(currentLine);
-        currentLine = word;
-      }
-    }
-    if (currentLine.isNotEmpty) lines.add(currentLine);
-
-    return lines;
-  }
-
-  // ✅ JSON Formatlama (Her ',' ve '.' Sonrasında Yeni Satır)
+  // ✅ Formats JSON with indentation
   static String formatJsonString(String jsonString) {
     try {
-      // JSON'u decode et ve formatlı hale getir
       var jsonObject = jsonDecode(jsonString);
-      String prettyJson = JsonEncoder.withIndent("  ").convert(jsonObject);
-
-      // Her virgülden (,) ve noktadan (.) sonra alt satıra geç
-      return prettyJson.replaceAllMapped(
-        RegExp(r'([,.])'), // Nokta veya virgül bulunursa
-        (match) => '${match.group(1)}\n', // Yanına \n ekleyerek alt satıra geç
-      );
+      return JsonEncoder.withIndent("  ").convert(jsonObject);
     } catch (e) {
-      return 'Invalid JSON format: $e';
+      return '🔥 Invalid JSON format: $e';
     }
+  }
+
+  // ✅ Formats text by inserting a newline after `, { } [ ]`
+  // ✅ Does NOT insert a newline after `.` inside `{ }`
+  static String formatTextWithNewline(String text) {
+    int curlyBraceDepth = 0;
+
+    return text.replaceAllMapped(
+      RegExp(r'([,{}\[\]])|(\.)'),
+      (match) {
+        String char = match.group(0)!;
+
+        if (char == '{') {
+          curlyBraceDepth++;
+        } else if (char == '}') {
+          curlyBraceDepth = (curlyBraceDepth > 0) ? curlyBraceDepth - 1 : 0;
+        }
+
+        if (curlyBraceDepth > 0 && char == '.') {
+          return char;
+        }
+
+        return '$char\n';
+      },
+    );
+  }
+
+  // ✅ Creates a star-bordered log box
+  static String _formatBox(String message, String color) {
+    int length = _getVisibleLength(message) + 4;
+    String border = '-' * length;
+    return '\n$color$border\n* $message *\n$border$_reset';
+  }
+
+  // ✅ Optimized string length calculation
+  static int _getVisibleLength(String text) {
+    return text.characters.length;
   }
 }
