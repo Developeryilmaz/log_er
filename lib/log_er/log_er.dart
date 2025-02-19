@@ -1,4 +1,7 @@
-library log_er;  // Paketin tanımlanması (gereklidir)
+
+// lib/log_er/log_er.dart
+
+library log_er;
 
 import 'dart:developer' as developer;
 import 'package:flutter/foundation.dart';

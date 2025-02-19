@@ -6,3 +6,10 @@
 # https://dart.dev/guides/libraries/private-files#pubspeclock.
 pubspec.lock
 notes.txt
+# .gitignore içeriği
+build/
+.dart_tool/
+.pub/
+.idea/
+packages/
+*.iml
