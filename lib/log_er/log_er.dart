@@ -1,3 +1,5 @@
+library log_er;  // Paketin tanımlanması (gereklidir)
+
 import 'dart:developer' as developer;
 import 'package:flutter/foundation.dart';
 import 'package:characters/characters.dart';
