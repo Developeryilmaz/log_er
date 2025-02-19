@@ -110,15 +110,19 @@ class Log {
 
   // Helper function to wrap text based on conditions
   static List<String> _wrapText(String text) {
-    final specialChars = {'.', '{', '}', '[', ']', ','}; // Normal line-breaking characters
-    bool insideBraces = false; // Tracks whether inside {}
+    final specialChars = {'.', '{', '}', '[', ']', ','}; // Özel karakterler
+    bool insideBraces = false; // {} içinde olup olmadığımızı takip eder
     List<String> lines = [];
     String currentLine = '';
+
+    // URL kontrolü için regex
+    final RegExp urlPattern = RegExp(r'http[s]?:\/\/[^\s]+');
 
     for (int i = 0; i < text.length; i++) {
       String char = text[i];
       currentLine += char;
 
+      // Eğer parantez içinde isek, parçalama kurallarını farklı uygula
       if (char == '{') {
         insideBraces = true;
       } else if (char == '}') {
@@ -128,8 +132,13 @@ class Log {
         continue;
       }
 
-      // Eğer nokta (.) kullanılmış ve ondan sonra boşluk (space) YOKSA, alt satıra in
-      if (char == '.' && (i + 1 < text.length && text[i + 1] != ' ')) {
+      // Eğer mevcut satır bir URL içeriyorsa, URL bitene kadar satırı bölme
+      if (urlPattern.hasMatch(currentLine)) {
+        continue;
+      }
+
+      // Eğer nokta (.) kullanılmış ve ondan sonra boşluk (space) YOKSA ve URL değilse, alt satıra in
+      if (char == '.' && (i + 1 < text.length && text[i + 1] != ' ') && !urlPattern.hasMatch(currentLine)) {
         lines.add(currentLine.trim());
         currentLine = '';
         continue;
