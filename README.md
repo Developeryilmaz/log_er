@@ -23,7 +23,7 @@ It provides **structured log output**, **emoji-based categories**, and **JSON fo
 To install `Log_er`, add the package to your `pubspec.yaml` file:
 ```yaml
 dependencies:
-  log_er: ^2.0.1
+  log_er: ^2.0.1+1
 
 
 flutter pub get
@@ -32,13 +32,12 @@ flutter pub get
 import 'package:log_er/log_er.dart';
 
 void main() {
-  Log.debug("🐞 Debug message: Used for development testing.");
-  Log.info("ℹ️ Info message: General system information.");
-  Log.warn("⚠️ Warning: Something might need attention.");
-  Log.error("🔥 Error: A critical issue occurred!");
-  Log.fatal("💀 Fatal error! System crash.");
-  Log.special("💜 Special log event.");
-  Log.data("📊 Data successfully processed.");
+  Log.debug(" Debug message: Used for development testing.");
+  Log.info("ℹ Info message: General system information.");
+  Log.warning(" Warning: Something might need attention.");
+  Log.error(" Error: A critical issue occurred!");
+  Log.special(" Special log event.");
+  Log.data(" Data successfully processed.");
 }
 
 
