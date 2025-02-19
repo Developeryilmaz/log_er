@@ -1,7 +1,6 @@
 name: log_er
 description: Log_er - Powerful & Colorful Logging for Flutter
 version: 1.0.0
-# repository: https://github.com/my_org/my_repo
 homepage: https://github.com/Developeryilmaz/log_er
 repository: https://github.com/Developeryilmaz/log_er
 issue_tracker: https://github.com/Developeryilmaz/log_er/issues
@@ -9,12 +8,10 @@ issue_tracker: https://github.com/Developeryilmaz/log_er/issues
 environment:
   sdk: ">=3.0.0 <4.0.0"
 
-# Add regular dependencies here.
 dependencies:
   flutter:
     sdk: flutter
+  characters: ^1.4.0
 
 dev_dependencies:
   flutter_lints: ^3.0.0
-
-
