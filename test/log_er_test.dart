@@ -38,7 +38,13 @@ void main() {
   });
 
   test('JSON Log Test', () {
-    Map<String, dynamic> sampleData = {"id": 123, "name": "Test Kullanıcısı", "email": "test@example.com", "role": "Admin", "createdAt": "2024-02-21"};
+    Map<String, dynamic> sampleData = {
+      "id": 123,
+      "name": "Test Kullanıcısı",
+      "email": "test@example.com",
+      "role": "Admin",
+      "createdAt": "2024-02-21"
+    };
 
     Log.data("📊 JSON Verisi: ${sampleData.toString()}");
   });
@@ -46,7 +52,12 @@ void main() {
   test('Large JSON log test', () {
     List<Map<String, dynamic>> users = List.generate(
       1000,
-      (index) => {"id": index + 1, "name": "User $index", "email": "user$index@example.com", "role": "Member"},
+      (index) => {
+        "id": index + 1,
+        "name": "User $index",
+        "email": "user$index@example.com",
+        "role": "Member"
+      },
     );
 
     Log.data("📊 Büyük JSON Log Verisi: ${users.length} öğe içeriyor.");

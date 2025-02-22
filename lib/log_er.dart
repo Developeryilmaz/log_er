@@ -18,7 +18,8 @@ class Log {
   static const String _cyan = '\x1B[36m'; // Cyan (Data)
 
   // General log method
-  static void log(String message, {String color = _reset, StackTrace? stackTrace}) {
+  static void log(String message,
+      {String color = _reset, StackTrace? stackTrace}) {
     final formattedMessage = '$color[LOG] $message$_reset';
 
     debugPrint(formattedMessage); // Print colored output
@@ -32,12 +33,18 @@ class Log {
   }
 
   // Color-coded log methods
-  static void red(String message, {StackTrace? stackTrace}) => log(message, color: _red, stackTrace: stackTrace);
-  static void green(String message, {StackTrace? stackTrace}) => log(message, color: _green, stackTrace: stackTrace);
-  static void yellow(String message, {StackTrace? stackTrace}) => log(message, color: _yellow, stackTrace: stackTrace);
-  static void blue(String message, {StackTrace? stackTrace}) => log(message, color: _blue, stackTrace: stackTrace);
-  static void magenta(String message, {StackTrace? stackTrace}) => log(message, color: _magenta, stackTrace: stackTrace);
-  static void cyan(String message, {StackTrace? stackTrace}) => log(message, color: _cyan, stackTrace: stackTrace);
+  static void red(String message, {StackTrace? stackTrace}) =>
+      log(message, color: _red, stackTrace: stackTrace);
+  static void green(String message, {StackTrace? stackTrace}) =>
+      log(message, color: _green, stackTrace: stackTrace);
+  static void yellow(String message, {StackTrace? stackTrace}) =>
+      log(message, color: _yellow, stackTrace: stackTrace);
+  static void blue(String message, {StackTrace? stackTrace}) =>
+      log(message, color: _blue, stackTrace: stackTrace);
+  static void magenta(String message, {StackTrace? stackTrace}) =>
+      log(message, color: _magenta, stackTrace: stackTrace);
+  static void cyan(String message, {StackTrace? stackTrace}) =>
+      log(message, color: _cyan, stackTrace: stackTrace);
 
   // 🔥 ERROR Logs
   static void error(String message, {StackTrace? stackTrace}) => _log(
@@ -81,7 +88,8 @@ class Log {
 
     // Log in VS Code Debug Console
     developer.log(
-      message.replaceAll(RegExp(r'\x1B\[[0-9;]*m'), ''), // Remove colors before logging
+      message.replaceAll(
+          RegExp(r'\x1B\[[0-9;]*m'), ''), // Remove colors before logging
       name: 'LOG',
       stackTrace: stackTrace,
     );
@@ -92,14 +100,19 @@ class Log {
     const int padding = 2; // Left padding only
     List<String> lines = _wrapText(message); // Wrap text based on special rules
 
-    int maxLength = lines.map(getVisibleLength).reduce((a, b) => a > b ? a : b); // Find longest line
+    int maxLength = lines
+        .map(getVisibleLength)
+        .reduce((a, b) => a > b ? a : b); // Find longest line
     int contentWidth = maxLength + (padding * 2); // Inner width calculation
 
     // Create top border
     String border = '╔${'═' * (contentWidth)}';
 
     // Create the middle lines
-    String middleLines = lines.map((line) => '  $line${' ' * (contentWidth - getVisibleLength(line))} ').join('\n');
+    String middleLines = lines
+        .map((line) =>
+            '  $line${' ' * (contentWidth - getVisibleLength(line))} ')
+        .join('\n');
 
     // Create the bottom border
     String bottomBorder = '╚${'═' * (contentWidth)}';
@@ -138,7 +151,9 @@ class Log {
       }
 
       // Eğer nokta (.) kullanılmış ve ondan sonra boşluk (space) YOKSA ve URL değilse, alt satıra in
-      if (char == '.' && (i + 1 < text.length && text[i + 1] != ' ') && !urlPattern.hasMatch(currentLine)) {
+      if (char == '.' &&
+          (i + 1 < text.length && text[i + 1] != ' ') &&
+          !urlPattern.hasMatch(currentLine)) {
         lines.add(currentLine.trim());
         currentLine = '';
         continue;
