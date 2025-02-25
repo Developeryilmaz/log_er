@@ -1,5 +1,5 @@
+import 'package:log_er/application/log_service.dart';
 import 'package:test/test.dart';
-import '../lib/log_er.dart';
 
 void main() {
   group('Log Tests - Comprehensive Suite', () {
