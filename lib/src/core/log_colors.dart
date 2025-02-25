@@ -9,7 +9,8 @@ class LogColors {
   static const String cyan = '\x1B[36m';
 
   /// Applies an ANSI color to a given text.
-  static String applyColor(String text, String color, {bool useAnsiColors = true}) {
+  static String applyColor(String text, String color,
+      {bool useAnsiColors = true}) {
     return (useAnsiColors && _isTerminal()) ? '$color$text$reset' : text;
   }
 

@@ -21,9 +21,10 @@ class Log {
     if (!enableLogging) return;
 
     final filePath = LogUtil.getCallerFilePath();
-    final timestamp = withTimestamp ? '[${DateTime.now().toIso8601String()}] ' : '';
+    final timestamp =
+        withTimestamp ? '[${DateTime.now().toIso8601String()}] ' : '';
     final separator = '─' * (message.length + 10);
-    
+
     final color = _getColor(level);
     final formattedMessage = LogColors.applyColor(
       '''
@@ -62,18 +63,18 @@ class Log {
     }
   }
 
-  static void debug(String message, {StackTrace? stackTrace}) =>
-      log(message, level: LogLevel.debug, stackTrace: stackTrace ?? StackTrace.current);
+  static void debug(String message, {StackTrace? stackTrace}) => log(message,
+      level: LogLevel.debug, stackTrace: stackTrace ?? StackTrace.current);
 
-  static void info(String message, {StackTrace? stackTrace}) =>
-      log(message, level: LogLevel.info, stackTrace: stackTrace ?? StackTrace.current);
+  static void info(String message, {StackTrace? stackTrace}) => log(message,
+      level: LogLevel.info, stackTrace: stackTrace ?? StackTrace.current);
 
-  static void warning(String message, {StackTrace? stackTrace}) =>
-      log(message, level: LogLevel.warning, stackTrace: stackTrace ?? StackTrace.current);
+  static void warning(String message, {StackTrace? stackTrace}) => log(message,
+      level: LogLevel.warning, stackTrace: stackTrace ?? StackTrace.current);
 
-  static void error(String message, {StackTrace? stackTrace}) =>
-      log(message, level: LogLevel.error, stackTrace: stackTrace ?? StackTrace.current);
+  static void error(String message, {StackTrace? stackTrace}) => log(message,
+      level: LogLevel.error, stackTrace: stackTrace ?? StackTrace.current);
 
-  static void fatal(String message, {StackTrace? stackTrace}) =>
-      log(message, level: LogLevel.fatal, stackTrace: stackTrace ?? StackTrace.current);
+  static void fatal(String message, {StackTrace? stackTrace}) => log(message,
+      level: LogLevel.fatal, stackTrace: stackTrace ?? StackTrace.current);
 }

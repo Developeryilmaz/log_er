@@ -9,7 +9,8 @@ class Log {
   Log._();
 
   static bool enableLogging = true;
-  static bool useAnsiColors = stdout.supportsAnsiEscapes && !_isVSCodeDebugConsole();
+  static bool useAnsiColors =
+      stdout.supportsAnsiEscapes && !_isVSCodeDebugConsole();
   static Set<String> disabledCategories = {};
   static bool logToFileEnabled = false;
   static String logFilePath = 'log.txt';
@@ -85,7 +86,8 @@ class Log {
     }
 
     developer.log(
-      message.replaceAll(RegExp(r'\x1B\[[0-9;]*m'), ''), // Remove ANSI color codes
+      message.replaceAll(
+          RegExp(r'\x1B\[[0-9;]*m'), ''), // Remove ANSI color codes
       name: category,
       stackTrace: stackTrace,
     );
@@ -93,36 +95,49 @@ class Log {
 
   /// 🚨 Error Log
   static void error(String message, {StackTrace? stackTrace}) =>
-      log('🔥 $message', color: _red, category: 'ERROR', stackTrace: stackTrace);
+      log('🔥 $message',
+          color: _red, category: 'ERROR', stackTrace: stackTrace);
 
   /// 🛠️ Debug Log
   static void debug(String message, {StackTrace? stackTrace}) =>
-      log('✅ $message', color: _green, category: 'DEBUG', stackTrace: stackTrace);
+      log('✅ $message',
+          color: _green, category: 'DEBUG', stackTrace: stackTrace);
 
   /// ⚠️ Warning Log
   static void warning(String message, {StackTrace? stackTrace}) =>
-      log('🚨 $message', color: _yellow, category: 'WARNING', stackTrace: stackTrace);
+      log('🚨 $message',
+          color: _yellow, category: 'WARNING', stackTrace: stackTrace);
 
   /// ℹ️ Info Log
-  static void info(String message, {StackTrace? stackTrace, bool withTimestamp = false}) =>
-      log('🔵 $message', color: _blue, category: 'INFO', stackTrace: stackTrace, withTimestamp: withTimestamp);
+  static void info(String message,
+          {StackTrace? stackTrace, bool withTimestamp = false}) =>
+      log('🔵 $message',
+          color: _blue,
+          category: 'INFO',
+          stackTrace: stackTrace,
+          withTimestamp: withTimestamp);
 
   /// 💜 Special Log
   static void special(String message, {StackTrace? stackTrace}) =>
-      log('💜 $message', color: _magenta, category: 'SPECIAL', stackTrace: stackTrace);
+      log('💜 $message',
+          color: _magenta, category: 'SPECIAL', stackTrace: stackTrace);
 
   /// 📊 Data Log
   static void data(String message, {StackTrace? stackTrace}) =>
-      log('📊 $message', color: _cyan, category: 'DATA', stackTrace: stackTrace);
+      log('📊 $message',
+          color: _cyan, category: 'DATA', stackTrace: stackTrace);
 
   /// 💀 Fatal Error Log
   static void fatal(String message, {StackTrace? stackTrace}) =>
-      log('💀 [FATAL] 💀 $message', color: _red, category: 'FATAL', stackTrace: stackTrace);
+      log('💀 [FATAL] 💀 $message',
+          color: _red, category: 'FATAL', stackTrace: stackTrace);
 
   /// 🌍 Logs a JSON object in a readable format
-  static void json(Map<String, dynamic> data, {StackTrace? stackTrace, String category = 'JSON'}) {
+  static void json(Map<String, dynamic> data,
+      {StackTrace? stackTrace, String category = 'JSON'}) {
     String jsonString = const JsonEncoder.withIndent('  ').convert(data);
-    List<String> formattedJson = jsonString.split('\n').map((line) => '💾 | $line').toList();
+    List<String> formattedJson =
+        jsonString.split('\n').map((line) => '💾 | $line').toList();
     final maxLength = formattedJson.fold<int>(
         category.length, (max, line) => line.length > max ? line.length : max);
     final separator = '─' * (maxLength + 10);
@@ -144,7 +159,8 @@ class Log {
     try {
       final file = File(logFilePath);
       final timestamp = DateTime.now().toIso8601String();
-      file.writeAsStringSync('[$timestamp] [$category] $message\n', mode: FileMode.append);
+      file.writeAsStringSync('[$timestamp] [$category] $message\n',
+          mode: FileMode.append);
     } catch (e) {
       print('⚠️ Error writing log to file: $e');
     }
