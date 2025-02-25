@@ -13,7 +13,7 @@ void main() {
 
     test('Fatal log should be processed correctly', () {
       expect(
-          () => Log.fatal('This is a fatal error!',
+          () => Log.fatal('This is a fatal error!' * 10,
               stackTrace: StackTrace.current),
           returnsNormally);
     });
