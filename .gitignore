@@ -10,3 +10,17 @@ notes.txt
 
 note.dart
 note2.dart
+
+# Ignore build directory, except required files
+build/
+!build/native_assets/macos/native_assets.json
+!build/unit_test_assets/
+
+# Ignore example build files, but keep source code
+example/build/
+example/.dart_tool/
+
+# Ignore macOS and Windows specific files
+.DS_Store
+Thumbs.db
+

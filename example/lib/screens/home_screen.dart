@@ -1,39 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:log_er/log_er.dart';
+import '../services/auth_service.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    Log.info("Rendering HomeScreen UI...", fileName: "home_screen.dart");
+
     return Scaffold(
-      appBar: AppBar(title: Text('Home Screen')),
+      appBar: AppBar(title: const Text("Log_er Demo")),
       body: Center(
         child: ElevatedButton(
-          onPressed: () {
-            // Log a debug message
-            Log.debug('This is a debug message', fileName: 'home_screen.dart');
-
-            // Log an info message
-            Log.info('This is an info message', fileName: 'home_screen.dart');
-
-            // Log a warning message
-            Log.warning(
-              'This is a warning message',
-              fileName: 'home_screen.dart',
-            );
-
-            // Log an error message
-            Log.log(
-              'This is an error message',
-              level: LogLevel.error,
-              fileName: 'home_screen.dart',
-            );
-
-            // Log a fatal message
-            Log.fatal('This is a fatal message', fileName: 'home_screen.dart');
+          onPressed: () async {
+            Log.info("Login button clicked.", fileName: "home_screen.dart");
+            await AuthService().login("john_doe", "password123");
           },
-          child: Text('Log Messages'),
+          child: const Text("Login"),
         ),
       ),
     );
