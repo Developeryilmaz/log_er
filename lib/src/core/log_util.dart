@@ -20,13 +20,11 @@ class LogUtil {
           print("🔍 Checking Frame for Match: $frame");
 
           // ✅ Updated regex to capture package & file formats
-          final match =
-              RegExp(r'package:([\w\/\.\-]+):(\d+):\d+').firstMatch(frame) ??
-                  RegExp(r'file:///(.*?):(\d+):\d+').firstMatch(frame);
+          final match = RegExp(r'package:([\w\/\.\-]+):(\d+):\d+').firstMatch(frame) ??
+                        RegExp(r'file:///(.*?):(\d+):\d+').firstMatch(frame); 
 
           if (match != null) {
-            print(
-                "✅ Regex Matched: ${match.group(1)} (Line: ${match.group(2)})");
+            print("✅ Regex Matched: ${match.group(1)} (Line: ${match.group(2)})");
             return '${match.group(1)} (Line: ${match.group(2)})';
           } else {
             print("❌ Regex Failed to Match Frame: $frame");
@@ -55,7 +53,7 @@ class LogUtil {
     const ignoredPatterns = [
       'dart:', 'package:flutter/', 'package:flutter_bloc',
       'package:test_api', 'package:flutter_test',
-      'log_util.dart', 'log_service.dart', // ✅ Exclude own logging framework
+      'log_util.dart', 'log_service.dart',
     ];
     return ignoredPatterns.any(frame.contains);
   }
