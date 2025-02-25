@@ -1,6 +1,6 @@
 ## 🚀 log_er - Powerful & Colorful Logging for Flutter & Dart
 
-![Dart CI](https://github.com/Developeryilmaz/log_er/actions/workflows/dart.yml/badge.svg)
+![Dart CI](https://github.com/Developeryilmaz/log_er/actions/workflows/flutter.yml/badge.svg)
 [![Pub Version](https://img.shields.io/pub/v/log_er)](https://pub.dev/packages/log_er)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/Developeryilmaz/log_er/blob/main/LICENSE)
 [![GitHub Stars](https://img.shields.io/github/stars/Developeryilmaz/log_er)](https://github.com/Developeryilmaz/log_er/stargazers)
