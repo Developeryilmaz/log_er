@@ -1,8 +1,6 @@
 # 🚀 log_er - Powerful & Colorful Logging for Flutter & Dart 📝  
 
-![log_er Banner](https://raw.githubusercontent.com/Developeryilmaz/log_er/main/assets/banner.png)  
-
-![Dart CI](https://github.com/Developeryilmaz/log_er/actions/workflows/dart.yml/badge.svg)
+![Dart CI](https://github.com/Developeryilmaz/log_er_flutter/actions/workflows/dart.yml/badge.svg)
 [![Pub Version](https://img.shields.io/pub/v/log_er)](https://pub.dev/packages/log_er)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/Developeryilmaz/log_er/blob/main/LICENSE)
 [![GitHub Stars](https://img.shields.io/github/stars/Developeryilmaz/log_er)](https://github.com/Developeryilmaz/log_er/stargazers)
@@ -62,6 +60,10 @@ Log.fatal("System crashed!", fileName: "core_system.dart");
 | **FATAL**   | 💀 | `Log.fatal("Critical failure!", fileName: "system.dart");` |
 | **SPECIAL** | 💜 | `Log.special("Feature flag enabled.", fileName: "config.dart");` |
 | **DATA**    | ✅ | `Log.data({"user": "John"}, fileName: "api.dart");` |
+
+---
+
+![log_er Banner](https://raw.githubusercontent.com/Developeryilmaz/log_er/main/assets/banner.png)  
 
 ---
 
