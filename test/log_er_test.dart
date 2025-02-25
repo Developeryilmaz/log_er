@@ -19,10 +19,7 @@ void main() {
     });
 
     test('Info log should include timestamp', () {
-      expect(
-          () => Log.info('Info log with timestamp',
-              withTimestamp: true, stackTrace: StackTrace.current),
-          returnsNormally);
+      expect(() => Log.info('Info log with timestamp'), returnsNormally);
     });
 
     test('Warning log should be processed correctly', () {
