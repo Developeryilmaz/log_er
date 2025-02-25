@@ -1,9 +1,15 @@
-# 🚀 log_er - Powerful & Colorful Logging for Flutter & Dart 📝  
+## 🚀 log_er - Powerful & Colorful Logging for Flutter & Dart
 
 ![Dart CI](https://github.com/Developeryilmaz/log_er_flutter/actions/workflows/dart.yml/badge.svg)
 [![Pub Version](https://img.shields.io/pub/v/log_er)](https://pub.dev/packages/log_er)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/Developeryilmaz/log_er/blob/main/LICENSE)
 [![GitHub Stars](https://img.shields.io/github/stars/Developeryilmaz/log_er)](https://github.com/Developeryilmaz/log_er/stargazers)
+[![GitHub Issues](https://img.shields.io/github/issues/Developeryilmaz/log_er)](https://github.com/Developeryilmaz/log_er/issues)
+[![GitHub Forks](https://img.shields.io/github/forks/Developeryilmaz/log_er)](https://github.com/Developeryilmaz/log_er/network)
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/Developeryilmaz/log_er)](https://github.com/Developeryilmaz/log_er/pulls)
+[![GitHub Last Commit](https://img.shields.io/github/last-commit/Developeryilmaz/log_er)](https://github.com/Developeryilmaz/log_er/commits/main)
+[![Code Size](https://img.shields.io/github/languages/code-size/Developeryilmaz/log_er)](https://github.com/Developeryilmaz/log_er)
+[![Sponsor](https://img.shields.io/badge/Sponsor-Donate-blue)](https://github.com/sponsors/Developeryilmaz)
 
 🔹 **log_er** is a structured, colorful, and emoji-enhanced logging package for **Dart & Flutter**.  
 🔹 Supports **custom log levels, JSON logging, stack traces, and more!**  
