@@ -103,4 +103,3 @@ Log(logger: FileLogger("logs.txt")).info("App started", fileName: "main.dart");
 
 📌 **Made with ❤️ by [Developeryilmaz](https://github.com/Developeryilmaz).**  
 🚀 **Star this repo on GitHub if you found it useful!** 🌟
-
