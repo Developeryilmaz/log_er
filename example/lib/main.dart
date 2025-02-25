@@ -6,7 +6,6 @@ import 'utils/log_setup.dart';
 void main() {
   setupLogging(); // Configuring log settings before app starts
   Log.info("Application is launching...", fileName: "main.dart");
-
   runApp(const MyApp());
 }
 

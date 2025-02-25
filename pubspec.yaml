@@ -16,6 +16,11 @@ dev_dependencies:
   flutter_lints: ^3.0.0
   test: ^1.24.0 # Use `test` for Dart packages
 
+
+linter:
+  rules:
+    - public_member_api_docs
+
 topics:
   - logging
   - debugging

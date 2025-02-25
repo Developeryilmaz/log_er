@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="log_er API docs, for the Dart programming language.">
+  <title>log_er - Dart API docs</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="static-assets/github.css?v1">
+  <link rel="stylesheet" href="static-assets/styles.css?v1">
+  <link rel="icon" href="static-assets/favicon.png?v1">
+  
+</head>
+
+<body data-base-href="" data-using-base-href="false" class="light-theme">
+<div id="overlay-under-drawer"></div>
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="https://github.com/Developeryilmaz/log_er">log_er package</a></li>
+  </ol>
+  <div class="self-name">log_er</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <div class="toggle" id="theme-button" title="Toggle brightness">
+    <label for="theme">
+      <input type="checkbox" id="theme" value="light-theme">
+      <span id="dark-theme-button" class="material-symbols-outlined">
+        dark_mode
+      </span>
+      <span id="light-theme-button" class="material-symbols-outlined">
+        light_mode
+      </span>
+    </label>
+  </div>
+</header>
+<main>
+  <div id="dartdoc-main-content" class="main-content">
+      
+<section class="desc markdown">
+  <h1 id="-log_er---powerful--colorful-logging-for-flutter-">📜 Log_er - Powerful &amp; Colorful Logging for Flutter 🚀</h1>
+<p><img src="https://img.shields.io/badge/Version-2.0.1-blue" alt="Log_er Version">
+<img src="https://img.shields.io/badge/License-MIT-green" alt="License"></p>
+<h2 id="-overview">🌟 Overview</h2>
+<p><code>Log_er</code> is a <strong>powerful</strong>, <strong>visually appealing</strong>, and <strong>easy-to-use</strong> logging package for Flutter and Dart applications.<br>
+It provides <strong>structured log output</strong>, <strong>emoji-based categories</strong>, and <strong>JSON formatting</strong> with color-coded messages.</p>
+<h3 id="-key-features">🎯 <strong>Key Features</strong></h3>
+<p>✅ <strong>Color-coded logs</strong> for easy debugging<br>
+✅ <strong>Supports multiple log levels</strong> (<code>debug</code>, <code>info</code>, <code>warn</code>, <code>error</code>, <code>fatal</code>, <code>special</code>, <code>data</code>, <code>json</code>)<br>
+✅ <strong>Emoji-enhanced logs</strong> for better visibility<br>
+✅ <strong>JSON pretty-printing with auto-formatting</strong><br>
+✅ <strong>StackTrace support for debugging errors</strong><br>
+✅ <strong>Text wrapping at 80 characters for readability</strong><br>
+✅ <strong>Custom log messages with any emoji and color</strong><br>
+✅ <strong>Log messages enclosed in <code>*</code> for clarity</strong></p>
+<hr>
+<h2 id="-installation">📦 <strong>Installation</strong></h2>
+<p>To install <code>Log_er</code>, add the package to your <code>pubspec.yaml</code> file:</p>
+<pre class="language-yaml"><code class="language-yaml">dependencies:
+  log_er: ^2.0.1+1
+
+
+flutter pub get
+
+
+import 'package:log_er/log_er.dart';
+
+void main() {
+  Log.debug(" Debug message: Used for development testing.");
+  Log.info("ℹ Info message: General system information.");
+  Log.warning(" Warning: Something might need attention.");
+  Log.error(" Error: A critical issue occurred!");
+  Log.special(" Special log event.");
+  Log.data(" Data successfully processed.");
+}
+
+
+**********************************
+* 🐞 [DEBUG] Debug message: Used for development testing. *
+**********************************
+
+**********************************
+* 🔵 [INFO] ℹ️ Info message: General system information. *
+**********************************
+
+**********************************
+* ⚠️ [WARNING] 🚨 Warning: Something might need attention. *
+**********************************
+
+**********************************
+* 🔥 [ERROR] 🔥 Error: A critical issue occurred! *
+**********************************
+
+**********************************
+* 💀 [FATAL] 💀 Fatal error! System crash. *
+**********************************
+
+**********************************
+* 💜 [SPECIAL] 💜 Special log event. *
+**********************************
+
+**********************************
+* 📊 [DATA] 📊 Data successfully processed. *
+**********************************
+
+
+void main() {
+  String jsonString = '''
+  {
+    "user": {
+      "name": "Alice",
+      "age": 25,
+      "contact": {
+        "email": "alice@example.com",
+        "phone": "+123456789"
+      },
+      "bio": "Software Engineer. Loves AI."
+    }
+  }
+  ''';
+
+  Log.json(jsonString);
+}
+
+
+**********************************
+* 📜 [JSON] 
+{
+"user":
+ {
+"name": "Alice",
+ "age": 25,
+ "contact":
+  {
+"email": "alice@example.com",
+ "phone": "+123456789"
+  },
+ "bio": "Software Engineer. Loves AI."
+ }
+} *
+**********************************
+
+
+void main() {
+  try {
+    throw Exception("Something went wrong!");
+  } catch (e, stackTrace) {
+    Log.error("🔥 Critical Error: $e", stackTrace: stackTrace);
+  }
+}
+
+
+**********************************
+* 🔥 [ERROR] Critical Error: Exception: Something went wrong! *
+**********************************
+#0      main (file://...)
+#1      _runMain (dart:...)
+...
+
+📌 Why is this useful?
+
+Captures and logs stack traces automatically
+Helps track where the error occurred for easier debugging
+✅ 4️⃣ Custom Logs with Emojis and Colors
+dart
+Kopyala
+Düzenle
+void main() {
+  Log.log("✨", "CUSTOM", "This is a custom log!", color: '\x1B[35m');
+  Log.log("🚀", "SYSTEM", "System started successfully.", color: '\x1B[32m');
+}
+🔹 Expected Output
+markdown
+Kopyala
+Düzenle
+**********************************
+* ✨ [CUSTOM] This is a custom log! *
+**********************************
+
+**********************************
+* 🚀 [SYSTEM] System started successfully. *
+**********************************
+📌 Why is this useful?
+
+Define your own log categories
+Customize with unique emojis and colors
+✅ 5️⃣ Long Message Wrapping for Readability
+dart
+Kopyala
+Düzenle
+void main() {
+  String longMessage = "🚀 This is a very long log message that contains a lot of text. "
+      "It is used to test how the logging system handles large messages "
+      "and ensures that the text wraps properly instead of overflowing the screen.";
+
+  Log.info(longMessage);
+}
+🔹 Expected Output (wrapped at 80 characters)
+markdown
+Kopyala
+Düzenle
+**********************************
+* 🔵 [INFO] 🚀 This is a very long log message that contains a lot of text. *
+It is used to test how the logging system handles large messages
+and ensures that the text wraps properly instead of overflowing the screen.
+**********************************
+📌 Why is this useful?
+
+Ensures long messages do not break formatting
+Automatically wraps text to improve readability
+🎯 Comparison with Other Logging Packages
+Feature	log_er	logger	dart:developer
+Emoji-based logs	✅ Yes	❌ No	❌ No
+Color-coded logs	✅ Yes	✅ Yes	❌ No
+JSON auto-formatting	✅ Yes	❌ No	❌ No
+StackTrace support	✅ Yes	✅ Yes	✅ Yes
+Custom log categories	✅ Yes	❌ No	❌ No
+Bordered log formatting	✅ Yes	❌ No	❌ No
+📜 License
+Log_er is released under the MIT License. You are free to use, modify, and distribute this package.
+
+🚀 Final Thoughts
+✅ Visually appealing logs with emojis &amp; colors
+✅ Pretty JSON logging with auto-formatting
+✅ Handles errors and stack traces automatically
+✅ Supports long text wrapping for better readability
+✅ Custom log messages with any emoji and color
+
+🚀 Your logging is now clean, structured, and beautiful! 🎉
+If you have any questions or feature requests, feel free to ask! 😊
+
+yaml
+Kopyala
+Düzenle
+
+---
+
+### **🚀 Why This `README.md` is Effective**
+✅ **Includes all key features with explanations**  
+✅ **Uses emojis and formatting for better readability**  
+✅ **Provides detailed usage examples with expected output**  
+✅ **Comparison table shows why `log_er` is better**  
+✅ **Makes the package look professional and user-friendly**  
+
+🚀 **Your package now has a polished, professional, and visually engaging `README.md`!** 🎉  
+Let me know if you need any further improvements! 😊
+</code></pre>
+</section>
+
+
+      <section class="summary">
+          <h2>Libraries</h2>
+        <dl>
+          <dt id="log_service">
+  <span class="name"><a href="application_log_service">application/log_service</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="ansi_colors">
+  <span class="name"><a href="core_ansi_colors">core/ansi_colors</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="log_formatter">
+  <span class="name"><a href="core_log_formatter">core/log_formatter</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="log_wrapper">
+  <span class="name"><a href="core_log_wrapper">core/log_wrapper</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="log_level">
+  <span class="name"><a href="domain_log_level">domain/log_level</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="log_repository">
+  <span class="name"><a href="domain_log_repository">domain/log_repository</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="api_logger">
+  <span class="name"><a href="infrastructure_api_logger">infrastructure/api_logger</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="console_logger">
+  <span class="name"><a href="infrastructure_console_logger">infrastructure/console_logger</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="file_logger">
+  <span class="name"><a href="infrastructure_file_logger">infrastructure/file_logger</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="log_er">
+  <span class="name"><a href="log_er">log_er</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+        </dl>
+      </section>
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li><a href="https://github.com/Developeryilmaz/log_er">log_er package</a></li>
+</ol>
+
+    <h5 class="hidden-xs"><span class="package-name">log_er</span> <span class="package-kind">package</span></h5>
+    <ol>
+      <li class="section-title">Libraries</li>
+      <li><a href="application_log_service">application/log_service</a></li>
+      <li><a href="core_ansi_colors">core/ansi_colors</a></li>
+      <li><a href="core_log_formatter">core/log_formatter</a></li>
+      <li><a href="core_log_wrapper">core/log_wrapper</a></li>
+      <li><a href="domain_log_level">domain/log_level</a></li>
+      <li><a href="domain_log_repository">domain/log_repository</a></li>
+      <li><a href="infrastructure_api_logger">infrastructure/api_logger</a></li>
+      <li><a href="infrastructure_console_logger">infrastructure/console_logger</a></li>
+      <li><a href="infrastructure_file_logger">infrastructure/file_logger</a></li>
+      <li><a href="log_er">log_er</a></li>
+</ol>
+
+  </div>
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div>
+</main>
+<footer>
+  <span class="no-break">
+    log_er
+      2.0.3
+  </span>
+  
+</footer>
+
+
+<script src="static-assets/highlight.pack.js?v1"></script>
+<script src="static-assets/docs.dart.js"></script>
+
+</body>
+</html>
+
