@@ -1,4 +1,3 @@
-
 import '../core/ansi_colors.dart';
 import '../core/log_formatter.dart';
 import '../domain/log_level.dart';

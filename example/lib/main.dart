@@ -20,9 +20,7 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       title: 'Log_er Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: ThemeData(primarySwatch: Colors.blue),
       home: const HomeScreen(),
     );
   }

@@ -9,8 +9,8 @@ import '../infrastructure/console_logger.dart';
 /// to customize and switch logging backends (e.g., console, file, API) easily.
 ///
 /// ### **Understanding the `fileName` Parameter**
-/// The `fileName` parameter is **mandatory** and should represent the **file** 
-/// where the log is triggered. This allows easy debugging by pinpointing 
+/// The `fileName` parameter is **mandatory** and should represent the **file**
+/// where the log is triggered. This allows easy debugging by pinpointing
 /// the exact location of the log event.
 ///
 /// **Best Practices for `fileName`:**
@@ -33,7 +33,8 @@ class Log {
   /// ```dart
   /// Log().log("User successfully logged in.", fileName: "auth_service.dart", level: LogLevel.info);
   /// ```
-  static void log(String message, {required String fileName, LogLevel level = LogLevel.info}) {
+  static void log(String message,
+      {required String fileName, LogLevel level = LogLevel.info}) {
     Log()._logger.log(message, fileName, level);
   }
 
@@ -46,18 +47,18 @@ class Log {
   /// ```dart
   /// Log.debug("Initializing user session.", fileName: "session_manager.dart");
   /// ```
-  /// 
+  ///
   ///
   /// **Example Usage:**
   /// ```dart
   /// Log.debug("Initializing user session.", fileName: "home_page.dart");
   /// ```
-  /// 
+  ///
   /// **Example Usage:**
   /// ```dart
   /// Log.debug("Initializing user session.", fileName: "profile_page.dart");
   /// ```
-  /// 
+  ///
   static void debug(String message, {required String fileName}) =>
       log(message, fileName: fileName, level: LogLevel.debug);
 
@@ -94,16 +95,14 @@ class Log {
   static void error(String message, {required String fileName}) =>
       log(message, fileName: fileName, level: LogLevel.error);
 
-
   /// Logs a **fatal-level** message.
-  /// 
+  ///
   /// Used when an **unrecoverable error** occurs, causing the application to crash.
-  /// 
+  ///
   /// **Example Usage:**
   /// ```dart
   /// Log.fatal("Application crashed due to a critical error.", fileName: "home_page.dart");
   /// ```
   static void fatal(String message, {required String fileName}) =>
       log(message, fileName: fileName, level: LogLevel.fatal);
-
 }
