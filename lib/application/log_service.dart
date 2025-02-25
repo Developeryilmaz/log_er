@@ -125,7 +125,8 @@ class Log {
       log("✅ ${data.toString()}", fileName: fileName, level: LogLevel.data);
 
   /// 🔍 **Internal Log Handler**
-  static void log(String message, {required String fileName, LogLevel level = LogLevel.info}) {
+  static void log(String message,
+      {required String fileName, LogLevel level = LogLevel.info}) {
     Log()._logger.log(message, fileName, level);
   }
 }
