@@ -4,16 +4,7 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-# Changelog
-
-## 2.0.5 - Latest Release
-- Improved structured logging.
-- Added `linter` support with public member API documentation checks.
-- Enhanced debugging experience.
-
----
-
-## [2.0.4] - 2025-02-27
+## [2.0.3] - 2025-02-27
 ### 🔥 Added
 - 🆕 Introduced **emoji-enhanced logging** for better readability.
 - 🆕 Added **5 real-world examples** per method in `log_printer.dart`.
