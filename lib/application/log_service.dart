@@ -129,4 +129,37 @@ class Log {
       {required String fileName, LogLevel level = LogLevel.info}) {
     Log()._logger.log(message, fileName, level);
   }
+
+  /// 💀 **Logs a FATAL-level message** (Critical system failure)
+  ///
+  /// **Example Usage:**
+  /// ```dart
+  /// Log.fatal("System crash detected!", fileName: "system_monitor.dart");
+  /// Log.fatal("Database corruption encountered.", fileName: "database_service.dart");
+  /// Log.fatal("Critical security breach detected.", fileName: "security_manager.dart");
+  /// Log.fatal("Memory overload - process termination.", fileName: "memory_manager.dart");
+  /// Log.fatal("Unexpected shutdown initiated.", fileName: "power_manager.dart");
+  /// ```
+  static void fatal(String message, {required String fileName}) =>
+      log("💀 $message", fileName: fileName, level: LogLevel.fatal);
+
+  /// 📜 **Logs a JSON-level message** (Logs structured JSON data)
+  ///
+  /// **Example Usage:**
+  /// ```dart
+  /// Log.json({"status": "ok", "message": "Request successful"}, fileName: "api_service.dart");
+  /// Log.json({"user": "John Doe", "email": "john@example.com"}, fileName: "user_manager.dart");
+  /// Log.json({"action": "login_attempt", "result": "failed"}, fileName: "auth_service.dart");
+  /// Log.json({"settings": {"theme": "dark", "notifications": true}}, fileName: "settings_manager.dart");
+  /// Log.json({"lat": 37.7749, "long": -122.4194}, fileName: "gps_tracker.dart");
+  /// ```
+  static void json(dynamic jsonData, {required String fileName}) {
+    final formattedJson = jsonData
+        .toString()
+        .replaceAll(',', ',\n')
+        .replaceAll('{', '{\n')
+        .replaceAll('}', '\n}');
+
+    log("🍸\n$formattedJson", fileName: fileName, level: LogLevel.json);
+  }
 }

@@ -5,7 +5,7 @@ class LogFormatter {
     final String header =
         '✨═══════════════════[ 🚀 ${level.name.toUpperCase()} 🚀 ]';
     final int messageLength = message.length;
-    final int separatorLength = (messageLength - 40).clamp(10, messageLength);
+    final int separatorLength = (messageLength - 40).clamp(10, 40);
     final String separator = '═' * separatorLength;
 
     return '''
@@ -13,7 +13,7 @@ $header$separator✨
 💡 | $message
 ────────────────────────────────────
 💡 | 📂 $fileName
-${separator * 3}
+$separator
 ''';
   }
 }
