@@ -12,19 +12,26 @@ class HomeScreen extends StatelessWidget {
         child: ElevatedButton(
           onPressed: () {
             // Log a debug message
-            Log.debug('This is a debug message');
+            Log.debug('This is a debug message', fileName: 'home_screen.dart');
 
             // Log an info message
-            Log.info('This is an info message');
+            Log.info('This is an info message', fileName: 'home_screen.dart');
 
             // Log a warning message
-            Log.warning('This is a warning message');
+            Log.warning(
+              'This is a warning message',
+              fileName: 'home_screen.dart',
+            );
 
             // Log an error message
-            Log.log('This is an error message', level: LogLevel.error);
+            Log.log(
+              'This is an error message',
+              level: LogLevel.error,
+              fileName: 'home_screen.dart',
+            );
 
             // Log a fatal message
-            Log.fatal('This is a fatal message');
+            Log.fatal('This is a fatal message', fileName: 'home_screen.dart');
           },
           child: Text('Log Messages'),
         ),

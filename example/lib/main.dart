@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:log_er/log_er.dart';
 
 void main() {
-  Log.info("Test");
+  Log.info("Lorem the main application widget that initializes and disply the uI" * 4, fileName: "main.dart");
   runApp(const MyApp());
 }
 

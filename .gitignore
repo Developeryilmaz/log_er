@@ -8,3 +8,5 @@ pubspec.lock
 notes.txt
 # .gitignore içeriği
 
+note.dart
+note2.dart
