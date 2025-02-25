@@ -19,7 +19,7 @@ class LogUtil {
         if (!_isFrameworkCall(frame)) {
           print("🔍 Checking Frame for Match: $frame");
 
-          // ✅ Updated regex to capture package & file formats
+          // ✅ Updated regex to capture package & file:/// formats
           final match = RegExp(r'package:([\w\/\.\-]+):(\d+):\d+').firstMatch(frame) ??
                         RegExp(r'file:///(.*?):(\d+):\d+').firstMatch(frame); 
 
