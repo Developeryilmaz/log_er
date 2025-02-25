@@ -1,7 +1,6 @@
 import 'dart:core';
 
 class LogUtil {
-  /// Retrieves the file path and line number of the true caller.
   static String getCallerFilePath() {
     try {
       final frames = StackTrace.current.toString().split('\n');
@@ -19,12 +18,15 @@ class LogUtil {
         if (!_isFrameworkCall(frame)) {
           print("🔍 Found Caller Frame: $frame");
 
-          // ✅ Supports both `package:` and `file:///` formats
+          // ✅ Supports package & file:/// formats
           final match = RegExp(r'package:([\w/_.-]+):(\d+):\d+').firstMatch(frame) ??
-                        RegExp(r'file:///(.*?):(\d+):\d+').firstMatch(frame);
+                        RegExp(r'file:///(.*?):(\d+):\d+').firstMatch(frame); 
 
           if (match != null) {
+            print("✅ Regex Matched: ${match.group(1)} (Line: ${match.group(2)})");
             return '${match.group(1)} (Line: ${match.group(2)})';
+          } else {
+            print("❌ Regex Failed to Match Frame: $frame");
           }
         }
       }
@@ -34,7 +36,6 @@ class LogUtil {
     return 'Unknown Source';
   }
 
-  /// Finds the first valid frame by skipping internal logging calls
   static int _findFirstValidFrame(List<String> frames) {
     for (int i = 5; i < frames.length; i++) {
       if (!_isFrameworkCall(frames[i]) &&
@@ -43,7 +44,7 @@ class LogUtil {
         return i;
       }
     }
-    return 5; // Default to 5 if no better frame is found
+    return 5;
   }
 
   static bool _isFrameworkCall(String frame) {
