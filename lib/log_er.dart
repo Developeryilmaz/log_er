@@ -57,8 +57,9 @@ class Log {
     if (!enableLogging || categoryFilter[level.name] == false) return;
 
     final filePath = _getCallerFilePath();
+    final separator = '═' * (message.length + 10);
     final formattedMessage = _applyColor(
-      '\n🚀 [${level.name.toUpperCase()}] \n💡 | $message\n💡 | 📂 Source: $filePath',
+      '\n✨$separator[ 🚀 ${level.name.toUpperCase()} 🚀 ]$separator✨\n💡 | $message\n💡 | 📂 Source: $filePath',
       level,
     );
 
