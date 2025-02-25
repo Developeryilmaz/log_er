@@ -1,16 +1,12 @@
 {
-    "cSpell.words": [
-        "loglama",
-        "Loglama",
-        "loglamayı",
-        "loglar",
-        "logları",
-        "Modu",
-        "Optimizasyonu",
-        "Pharrax",
-        "pubspec",
-        "Yazilim",
-        "YILMAZ"
-    ],
-    "commentTranslate.targetLanguage": "tr"
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Dart",
+            "type": "dart",
+            "request": "launch",
+            "program": "bin/main.dart",
+            "console": "terminal"
+        }
+    ]
 }

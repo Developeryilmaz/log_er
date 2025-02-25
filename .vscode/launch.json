@@ -7,19 +7,29 @@
         {
             "name": "log_er",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
+            "console": "terminal"
         },
         {
             "name": "log_er (profile mode)",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "profile"
+            "flutterMode": "profile",
+            "console": "terminal"
         },
         {
             "name": "log_er (release mode)",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "release"
+            "flutterMode": "release",
+            "console": "terminal"
+        },
+        {
+            "name": "Dart",
+            "type": "dart",
+            "request": "launch",
+            "program": "bin/main.dart",
+            "console": "terminal"
         }
     ]
 }
