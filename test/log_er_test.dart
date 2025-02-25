@@ -2,68 +2,100 @@ import 'package:test/test.dart';
 import '../lib/log_er.dart';
 
 void main() {
-  group('Log Tests', () {
+  group('Log Tests - Comprehensive Suite', () {
     test('Debug Log', () {
-      Log.debug("🛠️ Debugging session started: Initializing app configurations, loading cached user preferences, and checking connectivity status...", fileName: "app_initializer.dart");
+      Log.debug(
+          "Debugging initiated! Checking environment variables, ensuring dependency compatibility, and verifying system integrity...",
+          fileName: "debug_manager.dart");
     });
+
+    print("Starting background services...");
 
     test('Info Log', () {
-      Log.info("🔔 User John Doe has successfully completed the registration process. Email verification sent to john.doe@example.com.", fileName: "user_registration.dart");
+      Log.info(
+          "User Emily Clark successfully signed up. Email confirmation sent to emily.clark@example.com. Welcome aboard!",
+          fileName: "user_onboarding.dart");
     });
+
+    print("Network diagnostics running...");
 
     test('Warning Log', () {
-      Log.warning("⚠️ Network latency detected! API response time exceeded 3 seconds, indicating possible server overload or slow connection.", fileName: "network_monitor.dart");
+      Log.warning(
+          "Caution! System detected a slowdown. API latency peaked at 5 seconds. Suggesting optimizations...",
+          fileName: "network_analyzer.dart");
     });
+
+    print("System monitoring active, scanning for anomalies...");
 
     test('Error Log', () {
-      Log.error("🚨 Critical error: Database transaction failed due to a primary key constraint violation. Rolling back changes and notifying admin.", fileName: "database_service.dart");
+      Log.error(
+          "Alert! Database query failure detected! Possible malformed request. Logging stack trace for further investigation...",
+          fileName: "db_service.dart");
     });
+
+    print("Checking authentication logs...");
 
     test('Fatal Log', () {
-      Log.fatal("💀 System failure detected! The application encountered a fatal exception leading to an unhandled crash. Immediate debugging required.", fileName: "system_monitor.dart");
+      Log.fatal(
+          "Emergency! System failure imminent! Memory overflow detected, application will force restart in 10 seconds...",
+          fileName: "system_guardian.dart");
     });
 
+    print("Performing security audit...");
+
     test('Special Log', () {
-      Log.special("💡 Feature toggle activated: Dark mode and custom themes now enabled for beta testers in the settings panel.", fileName: "feature_manager.dart");
+      Log.special(
+          "Exciting update! A/B testing for new UI rollout enabled for selected users! Collecting feedback...",
+          fileName: "feature_flags.dart");
     });
+
+    print("Analyzing recent purchase activity...");
 
     test('Data Log', () {
       Log.data({
-        "event": "🛍️ User Purchase",
-        "user": "👤 john_doe",
+        "event": "Mega Sale Checkout",
+        "user": "alex_smith",
         "items": [
-          {"name": "💻 Laptop", "price": 1299.99, "quantity": 1},
-          {"name": "🖱️ Wireless Mouse", "price": 49.99, "quantity": 1},
-          {"name": "⌨️ Keyboard", "price": 149.99, "quantity": 1}
+          {"name": "Smartphone", "price": 999.99, "quantity": 1},
+          {
+            "name": "Noise Cancelling Headphones",
+            "price": 249.99,
+            "quantity": 1
+          },
+          {"name": "Smartwatch", "price": 199.99, "quantity": 1}
         ],
-        "total_price": "💲1499.97",
-        "payment_method": "💳 Credit Card",
-        "transaction_status": "✅ Success",
-        "timestamp": "🕒 2025-02-25T14:45:00Z"
-      }, fileName: "purchase_tracker.dart");
+        "total_price": "1449.97",
+        "payment_method": "Digital Wallet",
+        "transaction_status": "Completed",
+        "timestamp": "2025-02-25T15:10:00Z"
+      }, fileName: "sales_tracker.dart");
     });
+
+    print("Synchronizing data across servers...");
 
     test('JSON Log', () {
       Log.json({
-        "status": "🎉 SUCCESS",
-        "message": "🔄 Data synchronized successfully!",
-        "sync_details": {
-          "sync_time": "⏳ 2025-02-25T14:30:00Z",
-          "records_synced": "📂 250 Entries",
-          "database": "🗄️ Cloud DB",
-          "sync_duration": "⚡ 1.25s"
+        "status": "Data Sync Success",
+        "message": "All user data synchronized with cloud storage!",
+        "sync_summary": {
+          "time": "2025-02-25T15:30:00Z",
+          "entries_synced": "5000 Records",
+          "database": "Secure Cloud Storage",
+          "duration": "2.85s"
         },
-        "user": {
-          "id": "#123456",
-          "name": "👤 John Doe",
-          "role": "🔑 Admin"
+        "administrator": {
+          "id": "admin_789",
+          "name": "Alice Brown",
+          "role": "Super Admin"
         },
         "metadata": {
-          "device": "📱 iPhone 14 Pro",
-          "os": "🍏 iOS 17.2",
-          "app_version": "📦 v2.3.1"
+          "server": "US-East-1 AWS",
+          "platform": "Web & Mobile",
+          "app_version": "v3.1.0"
         }
-      }, fileName: "sync_manager.dart");
+      }, fileName: "sync_dashboard.dart");
     });
+
+    print("Finalizing log session and generating report...");
   });
 }
