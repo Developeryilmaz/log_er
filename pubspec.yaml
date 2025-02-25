@@ -21,8 +21,5 @@ topics:
   - debugging
   - monitoring
 
-executables:
-  log_er:
-
 funding:
   - https://github.com/sponsors/Developeryilmaz
