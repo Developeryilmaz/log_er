@@ -29,3 +29,11 @@ topics:
 
 funding:
   - https://github.com/sponsors/Developeryilmaz
+
+
+platforms:
+  android:
+  ios:
+  macos:
+  linux:
+  windows:

@@ -1,17 +1,9 @@
+import 'dart:developer' as dev;
 import 'package:flutter/material.dart';
 import 'package:log_er/log_er.dart';
 
 void main() {
-  print("🔹 Running log_er example...");
-
-  // **Web ortamında mı çalışıyoruz?**
-  bool isWeb = identical(0, 0.0);
-
-  if (isWeb) {
-    print("\n🌍 Running on Web - Some features may be limited\n");
-  } else {
-    print("\n📱 Running on Mobile/Desktop - Full features enabled\n");
-  }
+  dev.log("🔹 Running log_er example...");
 
   // // **Temel log seviyeleri**
   Log.debug("Debugging application...");
@@ -29,7 +21,7 @@ void main() {
   Log.cyan("This is a cyan message.");
   Log.magenta("This is a magenta message.");
 
-  print("\n✅ Log example completed!");
+  dev.log("\n✅ Log example completed!");
   runApp(const MyApp());
 }
 
