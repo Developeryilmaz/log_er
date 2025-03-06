@@ -67,6 +67,12 @@ Log.cyan("This is a cyan message.");
 Log.magenta("This is a magenta message.");
 ```
 
+---
+
+![log_er Banner](https://raw.githubusercontent.com/Developeryilmaz/log_er/main/assets/banner.png)  
+
+---
+
 ## 🛠 Upcoming Features
 - **File-based logging**
 - **API remote logging**
