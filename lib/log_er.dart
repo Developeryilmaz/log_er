@@ -1,5 +1,6 @@
-import 'package:stack_trace/stack_trace.dart';
 import 'dart:io' if (dart.library.io) 'dart:io' as io;
+import 'package:stack_trace/stack_trace.dart';
+
 
 class Log {
   static void debug(String message) =>
@@ -70,7 +71,7 @@ class Log {
   /// **Web ve Mobil için Terminal Genişliğini Güvenli Şekilde Al**
   static int _getSafeTerminalWidth() {
     if (_isWeb) {
-      return 80; // Web'de varsayılan genişlik
+      return 80; // Web için varsayılan genişlik
     }
     try {
       return io.stdout.hasTerminal ? io.stdout.terminalColumns : 80;
