@@ -17,12 +17,12 @@ jobs:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.29.0' # You can specify the Flutter version to use
+          flutter-version: '3.29.0'
           cache: true
 
       - name: Verify Flutter installation
         run: |
-          echo "Checking if Flutter is installed..."
+          echo "Checking Flutter installation..."
           flutter --version
           flutter doctor
 
@@ -34,3 +34,10 @@ jobs:
 
       - name: Run tests
         run: flutter test
+
+      - name: Build for Mobile and Desktop Only
+        run: |
+          flutter build apk
+          flutter build ios --no-codesign
+          flutter build macos
+          flutter build windows
