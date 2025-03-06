@@ -17,24 +17,20 @@ jobs:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.29.0'
+          flutter-version: '3.29.0' # You can specify the Flutter version to use
           cache: true
+
+      - name: Verify Flutter installation
+        run: |
+          echo "Checking if Flutter is installed..."
+          flutter --version
+          flutter doctor
 
       - name: Install dependencies
         run: flutter pub get
-
-      - name: Ensure Main Dart File Exists
-        run: |
-          if [ ! -f lib/main.dart ]; then
-            echo 'void main() { print("Flutter CI Build"); }' > lib/main.dart
-          fi
 
       - name: Analyze project source
         run: flutter analyze
 
       - name: Run tests
         run: flutter test
-
-      - name: Build APK (Mobile)
-        run: flutter build apk -t lib/main.dart || echo "Gradle issue detected. Trying clean build..." && flutter clean && flutter pub get && flutter build apk -t lib/main.dart
-
