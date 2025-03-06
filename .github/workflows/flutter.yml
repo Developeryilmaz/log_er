@@ -37,7 +37,12 @@ jobs:
 
       - name: Build for Mobile and Desktop Only
         run: |
-          flutter build apk
-          flutter build ios --no-codesign
-          flutter build macos
-          flutter build windows
+          if [ -f example/lib/main.dart ]; then
+            flutter build apk -t example/lib/main.dart
+            flutter build ios --no-codesign -t example/lib/main.dart
+            flutter build macos -t example/lib/main.dart
+            flutter build windows -t example/lib/main.dart
+          else
+            echo "Target file example/lib/main.dart not found."
+            exit 1
+          fi
