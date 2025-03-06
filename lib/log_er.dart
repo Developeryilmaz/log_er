@@ -1,9 +1,7 @@
-import 'dart:io' if (dart.library.html) 'dart:html' as html;
 import 'package:stack_trace/stack_trace.dart';
-import 'dart:io' as io;
 
-// **Web ortamını tespit eden güvenli yöntem**
-bool get _isWeb => identical(0, 0.0);
+// `dart:io` sadece Mobil & Konsol için kullanılacak
+import 'dart:io' if (dart.library.io) 'dart:io' as io;
 
 class Log {
   static void debug(String message) =>
@@ -40,8 +38,8 @@ class Log {
   static void _log(
       String message, String logType, String titleColor, String messageColor) {
     var fileInfo = _getCallingFileInfo();
-    String folderPath = fileInfo['folder'] as String;
-    String fileName = fileInfo['file'] as String;
+    String folderPath = fileInfo['folder'] ?? '';
+    String fileName = fileInfo['file'] ?? '';
     String resetColor = '\x1B[0m';
 
     int terminalWidth = _getSafeTerminalWidth();
@@ -71,15 +69,24 @@ class Log {
     print('');
   }
 
-  /// **Terminal genişliğini güvenli bir şekilde alır**
+  /// **Web ve Mobil için Terminal Genişliğini Güvenli Şekilde Al**
   static int _getSafeTerminalWidth() {
     if (_isWeb) {
-      return 80;
+      return 80; // Web'de varsayılan genişlik
     }
     try {
-      return io.stderr.terminalColumns;
+      return io.stdout.hasTerminal ? io.stdout.terminalColumns : 80;
     } catch (_) {
       return 80;
+    }
+  }
+
+  /// **Web ortamında mı çalışıyoruz?**
+  static bool get _isWeb {
+    try {
+      return identical(0, 0.0);
+    } catch (_) {
+      return false;
     }
   }
 
