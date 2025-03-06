@@ -1,6 +1,7 @@
-import 'dart:io' if (dart.library.io) 'dart:io' as io;
 import 'package:stack_trace/stack_trace.dart';
 
+// `dart:io` sadece Mobil & Konsol için kullanılacak
+import 'dart:io' if (dart.library.io) 'dart:io' as io;
 
 class Log {
   static void debug(String message) =>
@@ -91,9 +92,9 @@ class Log {
 
   static int _getMaxLineWidth(String message) {
     return message
-            .split("\n")
-            .map((line) => line.length)
-            .reduce((a, b) => a > b ? a : b) +
+        .split("\n")
+        .map((line) => line.length)
+        .reduce((a, b) => a > b ? a : b) +
         4;
   }
 
