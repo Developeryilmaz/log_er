@@ -1,6 +1,4 @@
 import 'package:stack_trace/stack_trace.dart';
-
-// `dart:io` sadece Mobil & Konsol için kullanılacak
 import 'dart:io' if (dart.library.io) 'dart:io' as io;
 
 class Log {
