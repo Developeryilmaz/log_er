@@ -1,37 +1,29 @@
-import 'dart:io';
+import 'dart:io' if (dart.library.html) 'dart:html' as html;
 import 'package:stack_trace/stack_trace.dart';
+import 'dart:io' as io;
 
-// Web için `dart:io` kullanımını kısıtla
-// Web ortamını kontrol etmek için
-
-// Web ortamını kontrol etmek için
+// **Web ortamını tespit eden güvenli yöntem**
+bool get _isWeb => identical(0, 0.0);
 
 class Log {
-  /// Debug log (Açık mavi)
   static void debug(String message) =>
       _log(message, '🔹 DEBUG', '\x1B[36m', '\x1B[36m');
 
-  /// Fatal log (Kırmızı arka plan)
   static void fatal(String message) =>
       _log(message, '💀 FATAL', '\x1B[41m', '\x1B[31m');
 
-  /// Error log (Kırmızı)
   static void error(String message) =>
       _log(message, '❌ ERROR', '\x1B[31m', '\x1B[31m');
 
-  /// JSON log (Yeşil)
   static void json(String jsonMessage) =>
       _log(jsonMessage, '🍺 JSON', '\x1B[32m', '\x1B[32m');
 
-  /// Info log (Mavi)
   static void info(String message) =>
       _log(message, '✅ INFO', '\x1B[34m', '\x1B[34m');
 
-  /// Warning log (Sarı)
   static void warning(String message) =>
       _log(message, '🚨 WARNING', '\x1B[33m', '\x1B[33m');
 
-  // 🌈 **Yeni Renk Metodları**
   static void red(String message) =>
       _log(message, '🔴 RED', '\x1B[31m', '\x1B[31m');
   static void green(String message) =>
@@ -45,13 +37,12 @@ class Log {
   static void magenta(String message) =>
       _log(message, '🟣 MAGENTA', '\x1B[35m', '\x1B[35m');
 
-  /// Log formatı (renkli mesajlar)
   static void _log(
       String message, String logType, String titleColor, String messageColor) {
     var fileInfo = _getCallingFileInfo();
     String folderPath = fileInfo['folder'] as String;
     String fileName = fileInfo['file'] as String;
-    String resetColor = '\x1B[0m'; // Reset ANSI color
+    String resetColor = '\x1B[0m';
 
     int terminalWidth = _getSafeTerminalWidth();
     int messageWidth = _getMaxLineWidth(message);
@@ -62,18 +53,17 @@ class Log {
 
     String line = '═' * lineWidth;
     String line2 = '─' * lineWidth;
-    String folderLentgh = ('─' * (folderPath.length)) + '─' * 4;
+    String folderLength = ('─' * (folderPath.length)) + '─' * 4;
 
     print('');
     print('  $titleColor$logType$resetColor  '.padRight(lineWidth));
     print('║$line');
     print('║');
-    print('║ $messageColor📝 $message$resetColor'
-        .padRight(lineWidth)); // **RENKLİ MESAJ**
+    print('║ $messageColor📝 $message$resetColor'.padRight(lineWidth));
     print('║');
     print('║$line2');
     print('║ 📄  \x1B[35m$fileName\x1B[0m'.padRight(lineWidth));
-    print('║$folderLentgh');
+    print('║$folderLength');
     if (folderPath.isNotEmpty) {
       print('║ 📂 \x1B[33m $folderPath \x1B[0m'.padRight(lineWidth));
     }
@@ -81,29 +71,18 @@ class Log {
     print('');
   }
 
+  /// **Terminal genişliğini güvenli bir şekilde alır**
   static int _getSafeTerminalWidth() {
-    // Eğer platform Web ise, varsayılan genişlik kullan
     if (_isWeb) {
-      return 80; // Web ortamında terminal genişliği belirlenemez, varsayılanı kullan
+      return 80;
     }
-
     try {
-      return stderr.terminalColumns; // Konsol ortamlarında genişliği al
+      return io.stderr.terminalColumns;
     } catch (_) {
-      return 80; // Terminal genişliği alınamazsa varsayılanı kullan
+      return 80;
     }
   }
 
-  /// **Web ortamında mı çalışıyoruz?**
-  static bool get _isWeb {
-    try {
-      return identical(0, 0.0);
-    } catch (_) {
-      return false; // Eğer hata alırsak, Web ortamında değiliz
-    }
-  }
-
-  /// Mesajın en uzun satırının genişliğini alır
   static int _getMaxLineWidth(String message) {
     return message
             .split("\n")
@@ -112,7 +91,6 @@ class Log {
         4;
   }
 
-  /// Çağrının geldiği dosya adı ve klasör yolunu alır
   static Map<String, String> _getCallingFileInfo() {
     try {
       var trace = Trace.current(2);
@@ -123,22 +101,35 @@ class Log {
         filePath = filePath.replaceFirst('file://', '');
       }
 
-      var file = File(filePath);
-      var parentPath = file.parent.path;
-      var fileName = file.uri.pathSegments.last;
-
-      if (parentPath.contains('/lib/')) {
-        parentPath = parentPath.split('/lib/').last;
-      } else {
-        parentPath = parentPath.split('/').last;
+      // Eğer Web'deysek, sadece dosya adını döndür (Dosya işlemi yapma!)
+      if (_isWeb) {
+        return {
+          'folder': '',
+          'file': filePath.split('/').last // Web için sadece dosya adını al
+        };
       }
 
-      return {
-        'folder': parentPath.isNotEmpty ? parentPath : '',
-        'file': fileName
-      };
+      // Mobil & Konsol için `File` kullanımı güvenli
+      try {
+        var file = io.File(filePath);
+        var parentPath = file.parent.path;
+        var fileName = file.uri.pathSegments.last;
+
+        if (parentPath.contains('/lib/')) {
+          parentPath = parentPath.split('/lib/').last;
+        } else {
+          parentPath = parentPath.split('/').last;
+        }
+
+        return {
+          'folder': parentPath.isNotEmpty ? parentPath : '',
+          'file': fileName
+        };
+      } catch (e) {
+        return {'folder': '', 'file': 'Unknown File'};
+      }
     } catch (e) {
-      return {'folder': '', 'file': 'Bilinmeyen Dosya'};
+      return {'folder': '', 'file': 'Unknown File'};
     }
   }
 }
