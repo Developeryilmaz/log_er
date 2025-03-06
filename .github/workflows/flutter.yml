@@ -20,12 +20,6 @@ jobs:
           flutter-version: '3.29.0'
           cache: true
 
-      - name: Verify Flutter installation
-        run: |
-          echo "Checking Flutter installation..."
-          flutter --version
-          flutter doctor
-
       - name: Install dependencies
         run: flutter pub get
 
@@ -35,14 +29,14 @@ jobs:
       - name: Run tests
         run: flutter test
 
-      - name: Build for Mobile and Desktop Only
-        run: |
-          if [ -f example/lib/main.dart ]; then
-            flutter build apk -t example/lib/main.dart
-            flutter build ios --no-codesign -t example/lib/main.dart
-            flutter build macos -t example/lib/main.dart
-            flutter build windows -t example/lib/main.dart
-          else
-            echo "Target file example/lib/main.dart not found."
-            exit 1
-          fi
+      - name: Build APK (Mobile)
+        run: flutter build apk -t example/lib/main.dart
+
+      - name: Build iOS (Apple Devices)
+        run: flutter build ios --no-codesign -t example/lib/main.dart
+
+      - name: Build macOS (Desktop)
+        run: flutter build macos -t example/lib/main.dart
+
+      - name: Build Windows (Desktop)
+        run: flutter build windows -t example/lib/main.dart
