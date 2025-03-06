@@ -13,7 +13,7 @@ void main() {
     print("\n📱 Running on Mobile/Desktop - Full features enabled\n");
   }
 
-  // **Temel log seviyeleri**
+  // // **Temel log seviyeleri**
   Log.debug("Debugging application...");
   Log.info("User logged in successfully.");
   Log.warning("Low memory detected!");
