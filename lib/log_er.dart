@@ -1,7 +1,7 @@
 // import 'package:stack_trace/stack_trace.dart';
 // import 'dart:io' if (dart.library.io) 'dart:io' as io;
 
-import 'dart:io' if (dart.library.html) 'dart:html';
+import 'dart:io' if (dart.library.html) 'dart:html' as html;
 import 'dart:io' if (dart.library.io) 'dart:io' as io;
 import 'package:stack_trace/stack_trace.dart' if (dart.library.html) '';
 
@@ -86,7 +86,7 @@ class Log {
       return 80; // Web için varsayılan genişlik
     }
     try {
-      return stdout.hasTerminal ? io.stdout.terminalColumns : 80;
+      return io.stdout.hasTerminal ? io.stdout.terminalColumns : 80;
     } catch (_) {
       return 80;
     }
