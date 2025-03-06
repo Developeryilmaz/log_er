@@ -11,20 +11,17 @@
 🔹 **log_er** is a structured, colorful, and emoji-enhanced logging package for **Dart & Flutter**.  
 🔹 Supports **custom log levels, JSON logging, stack traces, and more!**  
 
----
-
-## 🎯 **Features**
+## 🎯 Features
 ✅ **Color-coded logs for better readability** 🎨  
 ✅ **Supports multiple log levels** 🏷️  
+✅ **Custom color log functions** 🌈  
 ✅ **Easy-to-use API** 🚀  
 ✅ **Emoji-enhanced log messages** 😃  
 ✅ **Prettified JSON logging** 📝  
 ✅ **File and API logging support (soon!)** 🔥  
 
----
-
-## 📦 **Installation**
-Add the following to your **`pubspec.yaml`**:
+## 📦 Installation
+Add the following to your **pubspec.yaml**:
 ```yaml
 dependencies:
   log_er: ^2.0.4
@@ -34,72 +31,50 @@ Then run:
 flutter pub get
 ```
 
----
-
-## 🚀 **Quick Start**
-### **1️⃣ Import the Package**
+## 🚀 Quick Start
+### Import the Package
 ```dart
 import 'package:log_er/log_er.dart';
 ```
 
-### **2️⃣ Log Messages**
+### Log Messages
 ```dart
-Log.debug("Initializing app...", fileName: "main.dart");
-Log.info("User logged in successfully.", fileName: "auth_service.dart");
-Log.warning("Low memory detected!", fileName: "performance_monitor.dart");
-Log.error("Failed to fetch API data!", fileName: "network_service.dart");
-Log.fatal("System crashed!", fileName: "core_system.dart");
+Log.debug("Initializing app...");
+Log.info("User logged in successfully.");
+Log.warning("Low memory detected!");
+Log.error("Failed to fetch API data!");
+Log.fatal("System crashed!");
+Log.json('{ "status": "success", "user": "John Doe" }');
 ```
 
----
-
-## 🏷️ **Log Levels**
+## 🏷️ Log Levels
 | Level       | Emoji | Usage Example |
 |------------|------|--------------------|
-| **DEBUG**   | 🍺 | `Log.debug("Debugging...", fileName: "main.dart");` |
-| **INFO**    | 🔵 | `Log.info("User logged in.", fileName: "auth.dart");` |
-| **WARNING** | 🚨 | `Log.warning("Slow network detected.", fileName: "network.dart");` |
-| **ERROR**   | 🔥 | `Log.error("Database connection failed!", fileName: "db.dart");` |
-| **FATAL**   | 💀 | `Log.fatal("Critical failure!", fileName: "system.dart");` |
-| **SPECIAL** | 💜 | `Log.special("Feature flag enabled.", fileName: "config.dart");` |
-| **DATA**    | ✅ | `Log.data({"user": "John"}, fileName: "api.dart");` |
+| **DEBUG**   | 🔹 | `Log.debug("Debugging...");` |
+| **INFO**    | ✅ | `Log.info("User logged in.");` |
+| **WARNING** | 🚨 | `Log.warning("Slow network detected.");` |
+| **ERROR**   | ❌ | `Log.error("Database connection failed!");` |
+| **FATAL**   | 💀 | `Log.fatal("Critical failure!");` |
+| **JSON**    | 🍺 | `Log.json("{ "status": "ok" }");` |
 
----
-
-![log_er Banner](https://raw.githubusercontent.com/Developeryilmaz/log_er/main/assets/banner.png)  
-
----
-
-## 📊 **Logging Structured Data**
+## 🌈 Custom Color Log Methods
 ```dart
-Log.json({
-  "status": "success",
-  "user": {"id": 1, "name": "John Doe"}
-}, fileName: "api_service.dart");
+Log.red("This is a red message.");
+Log.green("This is a green message.");
+Log.yellow("This is a yellow message.");
+Log.blue("This is a blue message.");
+Log.cyan("This is a cyan message.");
+Log.magenta("This is a magenta message.");
 ```
 
----
-
-## ⚙️ **Configuration**
-Customize logging behavior by passing a **custom logger**:
-```dart
-Log(logger: FileLogger("logs.txt")).info("App started", fileName: "main.dart");
-```
-
----
-
-## 🛠 **Upcoming Features**
+## 🛠 Upcoming Features
 - **File-based logging**
 - **API remote logging**
 - **Log filtering & searching**
 - **Performance optimizations**
 
----
-
-## 📜 **License**
+## 📜 License
 **log_er** is licensed under the [MIT License](LICENSE).
 
----
-
 📌 **Made with ❤️ by [Developeryilmaz](https://github.com/Developeryilmaz).**  
-🚀 **Star this repo on GitHub if you found it useful!** 🌟
+🚀 **Star this repo on GitHub if you found it useful!** 🌟  

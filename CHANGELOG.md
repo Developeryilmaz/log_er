@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [2.0.4] - 2025-03-06
+### 🔥 Added
+- 🆕 Introduced **emoji-enhanced logging** for better readability.
+- 🆕 Added **5 real-world examples** per method in `log_printer.dart`.
+- 🆕 Implemented **`special()` log level** for custom events.
+
+### 🛠 Fixed
+- 🐛 Resolved missing `bin/log_er.dart` issue for CLI execution.
+- 🐛 Fixed `.gitignore` to prevent `.DS_Store` and unnecessary files in publishing.
+
+---
+
 ## [2.0.3] - 2025-02-27
 ### 🔥 Added
 - 🆕 Introduced **emoji-enhanced logging** for better readability.
