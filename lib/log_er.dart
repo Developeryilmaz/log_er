@@ -1,7 +1,5 @@
 export 'log_er_mobile.dart' if (dart.library.html) 'log_er_web.dart';
 
-
-
 // import 'package:stack_trace/stack_trace.dart';
 // import 'dart:io' if (dart.library.io) 'dart:io' as io;
 

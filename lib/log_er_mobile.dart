@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:stack_trace/stack_trace.dart';
 
 class Log {
   static void debug(String message) =>

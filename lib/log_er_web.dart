@@ -1,4 +1,5 @@
 class Log {
+  
   static void debug(String message) =>
       _log(message, '🔹 DEBUG');
 
