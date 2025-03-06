@@ -1,101 +1,57 @@
-import 'package:log_er/application/log_service.dart';
+import 'dart:io';
+
 import 'package:test/test.dart';
+import 'package:log_er/log_er.dart'; // Assuming log_er is the package where Log is defined
 
 void main() {
+  Log.debug('Bu bir debug mesajıdır.');
+  Log.info('Bilgilendirme mesajıdır.');
+  Log.warning('Dikkat edilmesi gereken bir durum var.');
+  Log.error('Bir hata meydana geldi!');
+  Log.fatal('Kritik bir hata oluştu!');
+  Log.json('{ "key": "value" }');
+
+  // 🌈 Yeni Renkli Log Metodları
+  Log.red('Bu bir kırmızı mesajdır.');
+  Log.green('Bu bir yeşil mesajdır.');
+  Log.yellow('Bu bir sarı mesajdır.');
+  Log.blue('Bu bir mavi mesajdır.');
+  Log.cyan('Bu bir açık mavi mesajdır.');
+  Log.magenta('Bu bir mor mesajdır.');
   group('Log Tests - Comprehensive Suite', () {
     test('Debug Log', () {
       Log.debug(
-          "Debugging initiated! Checking environment variables, ensuring dependency compatibility, and verifying system integrity...",
-          fileName: "debug_manager.dart");
+          "Debugging initiated! Checking environment variables, ensuring dependency compatibility, and verifying system integrity..." *
+              4);
     });
 
     print("Starting background services...");
 
     test('Info Log', () {
       Log.info(
-          "User Emily Clark successfully signed up. Email confirmation sent to emily.clark@example.com. Welcome aboard!",
-          fileName: "user_onboarding.dart");
+          "User Emily Clark successfully signed up. Email confirmation sent to emily.clark@example.com. Welcome aboard!" *
+              2);
     });
 
     print("Network diagnostics running...");
 
     test('Warning Log', () {
       Log.warning(
-          "Caution! System detected a slowdown. API latency peaked at 5 seconds. Suggesting optimizations...",
-          fileName: "network_analyzer.dart");
+          "Caution! System detected a slowdown. API latency peaked at 5 seconds. Suggesting optimizations...");
     });
 
     print("System monitoring active, scanning for anomalies...");
 
     test('Error Log', () {
       Log.error(
-          "Alert! Database query failure detected! Possible malformed request. Logging stack trace for further investigation...",
-          fileName: "db_service.dart");
+          "Alert! Database query failure detected! Possible malformed request. Logging stack trace for further investigation...");
     });
 
     print("Checking authentication logs...");
 
     test('Fatal Log', () {
       Log.fatal(
-          "Emergency! System failure imminent! Memory overflow detected, application will force restart in 10 seconds...",
-          fileName: "system_guardian.dart");
+          "Emergency! System failure imminent! Memory overflow detected, application will force restart in 10 seconds...");
     });
-
-    print("Performing security audit...");
-
-    test('Special Log', () {
-      Log.special(
-          "Exciting update! A/B testing for new UI rollout enabled for selected users! Collecting feedback...",
-          fileName: "feature_flags.dart");
-    });
-
-    print("Analyzing recent purchase activity...");
-
-    test('Data Log', () {
-      Log.data({
-        "event": "Mega Sale Checkout",
-        "user": "alex_smith",
-        "items": [
-          {"name": "Smartphone", "price": 999.99, "quantity": 1},
-          {
-            "name": "Noise Cancelling Headphones",
-            "price": 249.99,
-            "quantity": 1
-          },
-          {"name": "Smartwatch", "price": 199.99, "quantity": 1}
-        ],
-        "total_price": "1449.97",
-        "payment_method": "Digital Wallet",
-        "transaction_status": "Completed",
-        "timestamp": "2025-02-25T15:10:00Z"
-      }, fileName: "sales_tracker.dart");
-    });
-
-    print("Synchronizing data across servers...");
-
-    test('JSON Log', () {
-      Log.json({
-        "status": "Data Sync Success",
-        "message": "All user data synchronized with cloud storage!",
-        "sync_summary": {
-          "time": "2025-02-25T15:30:00Z",
-          "entries_synced": "5000 Records",
-          "database": "Secure Cloud Storage",
-          "duration": "2.85s"
-        },
-        "administrator": {
-          "id": "admin_789",
-          "name": "Alice Brown",
-          "role": "Super Admin"
-        },
-        "metadata": {
-          "server": "US-East-1 AWS",
-          "platform": "Web & Mobile",
-          "app_version": "v3.1.0"
-        }
-      }, fileName: "sync_dashboard.dart");
-    });
-
-    print("Finalizing log session and generating report...");
   });
 }
