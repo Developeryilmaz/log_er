@@ -1,6 +1,11 @@
 import 'dart:io';
 import 'package:stack_trace/stack_trace.dart';
 
+// Web için `dart:io` kullanımını kısıtla
+// Web ortamını kontrol etmek için
+
+// Web ortamını kontrol etmek için
+
 class Log {
   /// Debug log (Açık mavi)
   static void debug(String message) =>
@@ -76,24 +81,26 @@ class Log {
     print('');
   }
 
-  /// **Terminal genişliğini güvenli bir şekilde alır**
   static int _getSafeTerminalWidth() {
-    bool isWeb = identical(0, 0.0);
-    if (isWeb) {
+    // Eğer platform Web ise, varsayılan genişlik kullan
+    if (_isWeb) {
       return 80; // Web ortamında terminal genişliği belirlenemez, varsayılanı kullan
     }
+
     try {
-      return stderr.terminalColumns;
+      return stderr.terminalColumns; // Konsol ortamlarında genişliği al
     } catch (_) {
-      String? userDefinedWidth = Platform.environment['LOG_WIDTH'];
-      if (userDefinedWidth != null) {
-        int? width = int.tryParse(userDefinedWidth);
-        if (width != null && width > 0) {
-          return width;
-        }
-      }
+      return 80; // Terminal genişliği alınamazsa varsayılanı kullan
     }
-    return 80;
+  }
+
+  /// **Web ortamında mı çalışıyoruz?**
+  static bool get _isWeb {
+    try {
+      return identical(0, 0.0);
+    } catch (_) {
+      return false; // Eğer hata alırsak, Web ortamında değiliz
+    }
   }
 
   /// Mesajın en uzun satırının genişliğini alır
