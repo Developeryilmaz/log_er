@@ -7,14 +7,14 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Log.info("Rendering HomeScreen UI...", fileName: "home_screen.dart");
+    Log.info("Rendering HomeScreen UI...");
 
     return Scaffold(
       appBar: AppBar(title: const Text("Log_er Demo")),
       body: Center(
         child: ElevatedButton(
           onPressed: () async {
-            Log.info("Login button clicked.", fileName: "home_screen.dart");
+            Log.info("Login button clicked.");
             await AuthService().login("john_doe", "password123");
           },
           child: const Text("Login"),

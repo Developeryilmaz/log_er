@@ -18,7 +18,7 @@ void main() {
   Log.cyan("This is a cyan message.");
   Log.magenta("This is a magenta message.");
   setupLogging(); // Configuring log settings before app starts
-  Log.info("Application is launching...", fileName: "main.dart");
+  Log.info("Application is launching...");
   runApp(const MyApp());
 }
 
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Log.debug("Building main widget...", fileName: "main.dart");
+    Log.debug("Building main widget...");
 
     return MaterialApp(
       title: 'Log_er Demo',

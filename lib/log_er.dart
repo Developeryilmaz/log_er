@@ -78,6 +78,10 @@ class Log {
 
   /// **Terminal genişliğini güvenli bir şekilde alır**
   static int _getSafeTerminalWidth() {
+    bool isWeb = identical(0, 0.0);
+    if (isWeb) {
+      return 80; // Web ortamında terminal genişliği belirlenemez, varsayılanı kullan
+    }
     try {
       return stderr.terminalColumns;
     } catch (_) {

@@ -15,7 +15,7 @@ dependencies:
   log_er:
     git:
       url: https://github.com/Developeryilmaz/log_er
-      ref: main
+      ref: v2.0.4
 
 dev_dependencies:
   flutter_test:
