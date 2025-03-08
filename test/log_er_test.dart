@@ -1,5 +1,6 @@
+import 'package:log_er/log_er.dart';
 import 'package:test/test.dart';
-import 'package:log_er/log_er.dart'; // Assuming log_er is the package where Log is defined
+// import 'package:log_er/log_er.dart'; // Assuming log_er is the package where Log is defined
 
 void main() {
   Log.debug('Bu bir debug mesajıdır.');
