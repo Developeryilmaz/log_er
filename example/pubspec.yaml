@@ -34,10 +34,11 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
+  # log_er: ^2.0.4
   log_er:
     git:
       url: https://github.com/Developeryilmaz/log_er.git
-      ref: v2.0.4  # Eğer `main` branch değilse `master` deneyin
+      ref: main  # Eğer `main` branch değilse `master` deneyin
       
 
 dev_dependencies:
